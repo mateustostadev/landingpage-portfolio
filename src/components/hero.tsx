@@ -97,7 +97,7 @@ export default function Hero() {
                   className="relative bg-background/80 backdrop-blur-xl rounded-2xl p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   <img
-                    src="/public/assets/perfil.jpeg"
+                    src="./public/assets/perfil.jpeg"
                     alt="Mateus Tosta"
                     className="rounded-xl w-[300px] h-[300px] object-cover"
                   />
