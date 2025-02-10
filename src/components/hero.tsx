@@ -121,12 +121,30 @@ export default function Hero() {
                 Desenvolvedor Fullstack & IA
               </span>
             </h1>
-            <p className="mt-6 text-xl/relaxed font-medium text-muted-foreground">  
-  Transformando ideias em <span className="text-green-600 font-semibold">soluções digitais inovadoras</span> com expertise  
-  em <span className="text-green-600 font-semibold">desenvolvimento fullstack</span> e <span className="text-green-600 font-semibold">inteligência artificial</span>.  
-  Especializado em criar <span className="text-green-600 font-semibold">experiências web únicas</span> e <span className="text-green-600 font-semibold">sistemas inteligentes</span>  
-  que impulsionam o sucesso do seu negócio.  
-</p>
+            <p className="mt-6 text-xl/relaxed font-medium text-muted-foreground">
+              Transformando ideias em{" "}
+              <span className="text-green-600 font-semibold">
+                soluções digitais inovadoras
+              </span>{" "}
+              com expertise em{" "}
+              <span className="text-green-600 font-semibold">
+                desenvolvimento fullstack
+              </span>{" "}
+              e{" "}
+              <span className="text-green-600 font-semibold">
+                inteligência artificial
+              </span>
+              . Especializado em criar{" "}
+              <span className="text-green-600 font-semibold">
+                experiências web únicas
+              </span>{" "}
+              e{" "}
+              <span className="text-green-600 font-semibold">
+                {" "}
+                sistemas inteligentes
+              </span>{" "}
+              que impulsionam o sucesso do seu negócio.
+            </p>
           </motion.div>
         </div>
       </div>
