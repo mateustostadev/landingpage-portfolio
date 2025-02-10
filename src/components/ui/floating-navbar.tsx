@@ -1,30 +1,31 @@
 import { motion } from "framer-motion";
-import { Button } from "./button";
+
+const navItems = [
+  { name: "Início", href: "#home" },
+  { name: "Habilidades", href: "#skills" },
+  { name: "Experiência", href: "#experience" },
+  { name: "Projetos", href: "#projects" },
+  { name: "Contato", href: "#contact" },
+];
 
 export function FloatingNavbar() {
   return (
     <motion.div
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className="fixed top-4 left-1/3 -translate-x-1/3 z-50 w-auto"
     >
-      <div className="px-4 py-2 bg-white/80 backdrop-blur-lg rounded-full border border-green-500/20 shadow-lg shadow-green-500/10">
-        <nav className="flex gap-4">
-          <Button variant="ghost" className="text-sm font-medium">
-            Início
-          </Button>
-          <Button variant="ghost" className="text-sm font-medium">
-            Habilidades
-          </Button>
-          <Button variant="ghost" className="text-sm font-medium">
-            Experiência
-          </Button>
-          <Button variant="ghost" className="text-sm font-medium">
-            Projetos
-          </Button>
-          <Button variant="ghost" className="text-sm font-medium">
-            Contato
-          </Button>
+      <div className="relative bg-background/50 backdrop-blur-md border border-border rounded-full px-6 py-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+        <nav className="flex items-center justify-center gap-8">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-sm font-medium text-muted-foreground hover:text-green-600 dark:hover:text-green-400 transition-colors"
+            >
+              {item.name}
+            </a>
+          ))}
         </nav>
       </div>
     </motion.div>

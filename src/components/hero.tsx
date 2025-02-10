@@ -11,7 +11,7 @@ import {
   Bot,
   Blocks,
 } from "lucide-react";
-import { AnimatedText } from "@/components/ui/animated-text";
+import { useEffect, useState } from "react";
 
 const floatingIcons = [
   { Icon: Brain, delay: 0, x: -80, y: -40 },
@@ -22,9 +22,32 @@ const floatingIcons = [
   { Icon: Blocks, delay: 1, x: -20, y: 80 },
 ];
 
+const TypewriterText = ({ text }: { text: string }) => {
+  const [displayText, setDisplayText] = useState("");
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= text.length) {
+        setDisplayText(text.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return <span>{displayText}</span>;
+};
+
 export default function Hero() {
   return (
-    <div className="relative bg-gradient-to-b from-green-50 to-white dark:from-green-900/20 dark:to-background py-24 sm:py-32 overflow-hidden">
+    <div
+      id="home"
+      className="relative bg-gradient-to-b from-green-50 to-white dark:from-green-900/20 dark:to-background pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden"
+    >
       <GradientBlur />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -35,6 +58,10 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             className="relative"
           >
+            {/* Abstract Shape Behind Profile */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-800/30 dark:to-emerald-900/30 blur-3xl rounded-full" />
+            <div className="absolute -inset-4 bg-gradient-to-b from-green-100 to-emerald-100 dark:from-green-800/30 dark:to-emerald-900/30 blur-2xl rounded-[40%] rotate-12" />
+
             <div className="relative">
               {/* Floating Icons */}
               {floatingIcons.map(({ Icon, delay, x, y }, index) => (
@@ -59,21 +86,20 @@ export default function Hero() {
                     transform: "translate(-50%, -50%)",
                   }}
                 >
-                  <Icon className="h-8 w-8 text-green-500/60" />
+                  <Icon className="h-8 w-8 text-green-600/60 dark:text-green-400/60" />
                 </motion.div>
               ))}
 
-              {/* Profile Image with Gradient Border */}
+              {/* Profile Image */}
               <div className="relative group cursor-pointer">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl blur opacity-50 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="relative bg-background/80 backdrop-blur-xl rounded-2xl p-1"
+                  className="relative bg-background/80 backdrop-blur-xl rounded-2xl p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop"
+                    src="/public/assets/perfil.jpeg"
                     alt="Mateus Tosta"
-                    className="rounded-xl w-[280px] h-[280px] object-cover"
+                    className="rounded-xl w-[300px] h-[300px] object-cover"
                   />
                 </motion.div>
               </div>
@@ -89,27 +115,30 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             className="max-w-2xl"
           >
-            <h1 className="font-extrabold tracking-tight text-5xl/tight sm:text-7xl/tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
-              Mateus Tosta
-              <span className="block text-primary mt-2">
+            <h1 className="font-extrabold tracking-tight text-6xl/tight sm:text-8xl/tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
+              <TypewriterText text="Mateus Tosta" />
+              <span className="block text-green-600 dark:text-green-500 mt-2 text-4xl sm:text-5xl">
                 Desenvolvedor Fullstack & IA
               </span>
             </h1>
-            <p className="mt-6 text-lg/relaxed font-medium text-muted-foreground">
-              <AnimatedText
-                text="Transformando ideias em soluções digitais inovadoras com expertise em desenvolvimento fullstack e inteligência artificial."
-                highlightWords={["inteligência", "artificial", "inovadoras"]}
-              />
+            <p className="mt-6 text-xl/relaxed font-medium text-muted-foreground">
+              Transformando ideias em soluções digitais inovadoras com expertise
+              em desenvolvimento fullstack e inteligência artificial.
+              Especializado em criar experiências web únicas e sistemas
+              inteligentes que impulsionam o sucesso do seu negócio.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
-              <Button size="lg" className="group">
+              <Button
+                size="lg"
+                className="group bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl transition-all"
+              >
                 Iniciar Projeto
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="group hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="group hover:bg-green-50 dark:hover:bg-green-900/20 border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700 transition-colors shadow-lg hover:shadow-xl"
               >
                 Ver Projetos
               </Button>

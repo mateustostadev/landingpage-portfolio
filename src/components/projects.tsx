@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 
 const projects = [
   {
@@ -10,36 +10,37 @@ const projects = [
     description:
       "API RESTful em Laravel para gerenciamento de competições de surfe, incluindo surfistas, baterias, ondas e sistema de pontuação.",
     image:
-      "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1623282033815-40b05d96c903?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     tech: ["Laravel", "MySQL", "RESTful API", "PHP"],
     github: "#",
-    demo: "#",
   },
   {
     title: "Sistema de Disparo WhatsApp",
     description:
-      "Plataforma automatizada para disparo de mensagens WhatsApp com verificação de números ativos e gestão de campanhas.",
+      "Plataforma automatizada para disparo de mensagens WhatsApp com verificação de números ativos e gestão de instâncias.",
     image:
-      "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500&h=300&fit=crop",
-    tech: ["Node.js", "React", "MongoDB", "WhatsApp API"],
+      "https://plus.unsplash.com/premium_photo-1683936163516-ec4c53227e26?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    tech: ["Node.js", "PHP", "MySQL", "WhatsApp API"],
     github: "#",
-    demo: "#",
   },
 ];
 
 export default function Projects() {
   return (
-    <div className="py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div
+      id="projects"
+      className="py-24 bg-gradient-to-b from-green-50 to-white dark:from-green-900/10 dark:to-background"
+    >
+      <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-600">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
             Projetos em Destaque
           </h2>
           <p className="text-muted-foreground">
             Principais projetos desenvolvidos recentemente
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 max-w-4xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -48,7 +49,7 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 border-green-500/20 shadow-lg shadow-green-500/5">
+              <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-green-200/50 dark:border-green-800/50 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                 <div className="relative">
                   <img
                     src={project.image}
@@ -58,7 +59,7 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-xl mb-3">
+                  <h3 className="font-semibold text-xl mb-3 text-green-800 dark:text-green-300">
                     {project.title}
                   </h3>
                   <p className="text-muted-foreground mb-4">
@@ -69,32 +70,26 @@ export default function Projects() {
                       <Badge
                         key={i}
                         variant="secondary"
-                        className="bg-green-500/10"
+                        className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300"
                       >
                         {tech}
                       </Badge>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="p-6 pt-0 flex gap-4">
-                  <Button variant="outline" className="flex-1 group" asChild>
+                <CardFooter className="p-6 pt-0">
+                  <Button
+                    variant="outline"
+                    className="w-full group shadow-sm hover:shadow-md transition-shadow border-green-200 dark:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/20"
+                    asChild
+                  >
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <Github className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      Código
-                    </a>
-                  </Button>
-                  <Button className="flex-1 group" asChild>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      Demo
+                      Ver Código
                     </a>
                   </Button>
                 </CardFooter>

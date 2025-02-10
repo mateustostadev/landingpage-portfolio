@@ -17,12 +17,12 @@ export default function CodePreview() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative rounded-lg bg-zinc-900 p-4 border border-green-500/20 shadow-lg shadow-green-500/10 overflow-hidden font-mono text-sm text-green-400"
+      className="relative rounded-lg bg-zinc-900 p-6 border border-zinc-800 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(0,0,0,0.2)] overflow-hidden font-mono text-sm text-emerald-400 w-[300px]"
     >
       <div className="flex items-center gap-2 mb-4">
         <div className="w-3 h-3 rounded-full bg-red-500" />
         <div className="w-3 h-3 rounded-full bg-yellow-500" />
-        <div className="w-3 h-3 rounded-full bg-green-500" />
+        <div className="w-3 h-3 rounded-full bg-emerald-500" />
       </div>
       <pre className="overflow-x-auto">
         {codeSnippet.split("\n").map((line, i) => (
