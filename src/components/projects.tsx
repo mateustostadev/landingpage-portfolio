@@ -12,7 +12,7 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1623282033815-40b05d96c903?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     tech: ["Laravel", "MySQL", "RESTful API", "PHP"],
-    github: "#",
+    github: "https://github.com/mateustostadev/surf-api",
   },
   {
     title: "Sistema de Disparo WhatsApp",
@@ -21,7 +21,7 @@ const projects = [
     image:
       "https://plus.unsplash.com/premium_photo-1683936163516-ec4c53227e26?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     tech: ["Node.js", "PHP", "MySQL", "WhatsApp API"],
-    github: "#",
+    github: "https://github.com/mateustostadev/verificador",
   },
 ];
 
