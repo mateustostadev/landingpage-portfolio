@@ -3,6 +3,7 @@ import Skills from "./skills";
 import Projects from "./projects";
 import Contact from "./contact";
 import Experience from "./experience";
+import Expertise from "./expertise";
 import { FloatingNavbar } from "@/components/ui/floating-navbar";
 
 function Home() {
@@ -12,6 +13,7 @@ function Home() {
       <Hero />
       <Skills />
       <Experience />
+      <Expertise />
       <Projects />
       <Contact />
     </div>
