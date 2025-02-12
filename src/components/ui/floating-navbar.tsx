@@ -26,8 +26,6 @@ export function FloatingNavbar() {
 
   const blurValue = useTransform(scrollY, [0, 100], [0, 10]);
 
-  const logoOpacity = useTransform(scrollY, [0, 100], [0, 1]);
-
   const buttonBgOpacity = useTransform(scrollY, [0, 100], [0, 0.1]);
 
   useEffect(() => {
@@ -86,19 +84,8 @@ export function FloatingNavbar() {
         }}
       />
       <nav className="relative mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-        <motion.a
-          href="#home"
-          onClick={(e) => handleNavClick(e, "#home")}
-          className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
-          style={{ opacity: logoOpacity }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          MT.dev
-        </motion.a>
-
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4 mx-auto">
           <ul className="flex items-center gap-1">
             {menuItems.map((item) => (
               <li key={item.name}>
@@ -144,7 +131,7 @@ export function FloatingNavbar() {
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="md:hidden flex items-center gap-2 ml-auto">
           <Button
             variant="ghost"
             size="icon"
