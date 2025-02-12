@@ -1,25 +1,52 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "./button";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, Moon, Sun } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useTheme } from "@/components/theme-provider";
 
-const navItems = [
-  { name: "Início", href: "#home" },
-  { name: "Habilidades", href: "#skills" },
+const menuItems = [
+  { name: "Home", href: "#home" },
+  { name: "Skills", href: "#skills" },
   { name: "Experiência", href: "#experience" },
-  { name: "Serviços", href: "#expertise" },
+  { name: "Expertise", href: "#expertise" },
   { name: "Projetos", href: "#projects" },
   { name: "Contato", href: "#contact" },
 ];
 
 export function FloatingNavbar() {
+  const [activeSection, setActiveSection] = useState("home");
+  const { theme, setTheme } = useTheme();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  const { scrollY } = useScroll();
+
+  const backgroundOpacity = useTransform(scrollY, [0, 100], [0, 0.8]);
+
+  const blurValue = useTransform(scrollY, [0, 100], [0, 10]);
+
+  const logoOpacity = useTransform(scrollY, [0, 100], [0, 1]);
+
+  const buttonBgOpacity = useTransform(scrollY, [0, 100], [0, 0.1]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
+      const sections = menuItems.map((item) => ({
+        id: item.href.replace("#", ""),
+        top:
+          document.getElementById(item.href.replace("#", ""))?.offsetTop || 0,
+      }));
+
+      const currentPosition = window.scrollY + 100;
+
+      const currentSection = sections.reduce((acc, section) => {
+        return currentPosition >= section.top ? section.id : acc;
+      }, sections[0].id);
+
+      setActiveSection(currentSection);
+
+      const currentScrollPos = window.pageYOffset;
       setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
       setPrevScrollPos(currentScrollPos);
     };
@@ -28,32 +55,16 @@ export function FloatingNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  const handleClick = (
+  const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const offset = 80; // Adjust this value based on your navbar height
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
+      element.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     }
   };
@@ -63,34 +74,125 @@ export function FloatingNavbar() {
       initial={{ y: -100 }}
       animate={{ y: visible ? 0 : -100 }}
       transition={{ duration: 0.3 }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50"
+      className="fixed top-0 left-0 right-0 z-50"
     >
-      <div className="relative bg-background/50 backdrop-blur-md border border-border rounded-full px-4 py-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-        <nav className="flex items-center justify-center gap-4 sm:gap-6">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => handleClick(e, item.href)}
-              className="text-sm font-medium text-muted-foreground hover:text-green-600 dark:hover:text-green-400 transition-colors"
-            >
-              {item.name}
-            </a>
-          ))}
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          backgroundColor: theme === "dark" ? "#000" : "#fff",
+          opacity: backgroundOpacity,
+          backdropFilter: `blur(${blurValue}px)`,
+          WebkitBackdropFilter: `blur(${blurValue}px)`,
+        }}
+      />
+      <nav className="relative mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+        <motion.a
+          href="#home"
+          onClick={(e) => handleNavClick(e, "#home")}
+          className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
+          style={{ opacity: logoOpacity }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          MT.dev
+        </motion.a>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-4">
+          <ul className="flex items-center gap-1">
+            {menuItems.map((item) => (
+              <li key={item.name}>
+                <Button
+                  variant="ghost"
+                  className={`relative px-4 py-2 ${
+                    activeSection === item.href.replace("#", "")
+                      ? "text-green-600 dark:text-green-400"
+                      : "text-foreground hover:text-green-600 dark:hover:text-green-400"
+                  }`}
+                  style={{
+                    backgroundColor: `rgba(var(--background), ${buttonBgOpacity})`,
+                  }}
+                  asChild
+                >
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                  >
+                    {item.name}
+                    {activeSection === item.href.replace("#", "") && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-green-400"
+                        layoutId="underline"
+                      />
+                    )}
+                  </a>
+                </Button>
+              </li>
+            ))}
+          </ul>
+
           <Button
             variant="ghost"
             size="icon"
-            onClick={toggleTheme}
-            className="h-8 w-8 p-1"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="ml-2 text-foreground hover:text-green-600 dark:hover:text-green-400"
           >
-            {theme === "light" ? (
-              <Moon className="h-4 w-4 text-muted-foreground hover:text-green-600 transition-colors" />
-            ) : (
-              <Sun className="h-4 w-4 text-muted-foreground hover:text-green-400 transition-colors" />
-            )}
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
           </Button>
-        </nav>
-      </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="md:hidden flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="text-foreground hover:text-green-600 dark:hover:text-green-400"
+          >
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-foreground hover:text-green-600 dark:hover:text-green-400"
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-16">
+              <ul className="flex flex-col gap-4">
+                {menuItems.map((item) => (
+                  <li key={item.name}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start text-lg ${
+                        activeSection === item.href.replace("#", "")
+                          ? "text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20"
+                          : "text-foreground"
+                      }`}
+                      asChild
+                    >
+                      <a
+                        href={item.href}
+                        onClick={(e) => handleNavClick(e, item.href)}
+                      >
+                        {item.name}
+                      </a>
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </nav>
     </motion.div>
   );
 }

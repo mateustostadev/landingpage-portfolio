@@ -37,7 +37,7 @@ export default function Hero() {
   return (
     <div
       id="home"
-      className="relative min-h-screen bg-gradient-to-b from-green-50 to-white dark:from-green-900/20 dark:to-background pt-24 pb-20 sm:pt-32 sm:pb-28 overflow-hidden"
+      className="relative min-h-[85vh] bg-gradient-to-b from-green-50 to-white dark:from-green-900/20 dark:to-background pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden"
     >
       <GradientBlur />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
@@ -85,9 +85,7 @@ export default function Hero() {
                   className="relative bg-background/80 backdrop-blur-xl rounded-2xl p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   <img
-
                     src="https://media.licdn.com/dms/image/v2/D4D03AQGq3z3aRyjhww/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718228723300?e=1744848000&v=beta&t=h1TBrq7unUz111HOuWhVE8sq2dZVaAH86MKNdaVO_LQ"
-
                     alt="Mateus Tosta"
                     className="rounded-xl w-full aspect-square object-cover"
                   />
@@ -106,16 +104,15 @@ export default function Hero() {
             className="w-full max-w-2xl text-center lg:text-left"
           >
             <h1 className="font-extrabold tracking-tight text-5xl sm:text-6xl lg:text-7xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
-              <TypewriterText text="Mateus Tosta" />
-              <span className="block text-green-600 dark:text-green-500 mt-2 text-2xl sm:text-4xl lg:text-5xl">
+              <span className="bg-gradient-to-r from-green-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent text-6xl sm:text-7xl lg:text-8xl">
+                <TypewriterText text="Mateus Tosta" />
+              </span>
+              <span className="block text-green-600 dark:text-green-500 mt-4 text-2xl sm:text-4xl lg:text-5xl">
                 Desenvolvedor Fullstack & IA
               </span>
             </h1>
 
             <p className="mt-6 text-base sm:text-lg lg:text-xl font-medium text-muted-foreground">
-
-           
-
               Transformando ideias em{" "}
               <span className="text-green-600 font-semibold">
                 soluções digitais inovadoras
@@ -134,10 +131,7 @@ export default function Hero() {
               </span>{" "}
               e{" "}
               <span className="text-green-600 font-semibold">
-
-
                 {" "}
-
                 sistemas inteligentes
               </span>{" "}
               que impulsionam o sucesso do seu negócio.
