@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
@@ -12,7 +12,7 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1623282033815-40b05d96c903?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     tech: ["Laravel", "MySQL", "RESTful API", "PHP"],
-    github: "https://github.com/mateustostadev/surf-api",
+    link: "https://github.com/mateustostadev/surf-api",
   },
   {
     title: "Sistema de Disparo WhatsApp",
@@ -21,7 +21,16 @@ const projects = [
     image:
       "https://plus.unsplash.com/premium_photo-1683936163516-ec4c53227e26?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     tech: ["Node.js", "PHP", "MySQL", "WhatsApp API"],
-    github: "https://github.com/mateustostadev/verificador",
+    link: "https://github.com/mateustostadev/verificador",
+  },
+  {
+    title: "E-commerce Cantinho das Flores",
+    description:
+      "Sistema E-commerce para uma floricultura localizada em Salvador-BA, especializados na venda de flores e arranjos personalizados para diversas ocasiões.",
+    image:
+      "https://images.unsplash.com/photo-1508253578933-2905be28d772?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    tech: ["Wordpress", "PHP", "MySQL", "Mercado Pago API"],
+    link: "https://cantinhodasflores.com",
   },
 ];
 
@@ -84,12 +93,12 @@ export default function Projects() {
                     asChild
                   >
                     <a
-                      href={project.github}
+                      href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Github className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      Ver Código
+                      <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                      Visualizar
                     </a>
                   </Button>
                 </CardFooter>
