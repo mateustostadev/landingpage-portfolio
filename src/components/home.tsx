@@ -4,6 +4,7 @@ import Projects from "./projects";
 import Contact from "./contact";
 import Experience from "./experience";
 import Expertise from "./expertise";
+import { Partners } from "./partners";
 import { FloatingNavbar } from "@/components/ui/floating-navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -16,6 +17,7 @@ function Home() {
         <Skills />
         <Experience />
         <Expertise />
+        <Partners />
         <Projects />
         <Contact />
       </div>
