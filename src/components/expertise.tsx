@@ -97,7 +97,7 @@ export default function Expertise() {
   return (
     <div
       id="expertise"
-      className="py-24 bg-gradient-to-b from-white to-green-50 dark:from-background dark:to-green-900/10 relative overflow-hidden"
+      className="py-24 bg-gradient-to-b from-emerald-50 via-white to-emerald-100 dark:from-green-900/20 dark:to-background relative overflow-hidden"
     >
       <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

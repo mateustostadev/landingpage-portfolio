@@ -160,7 +160,7 @@ export default function Experience() {
   return (
     <div
       id="experience"
-      className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-green-50 dark:from-background dark:to-green-900/10"
+      className="py-24 relative overflow-hidden bg-gradient-to-b from-emerald-50 via-white to-emerald-100 dark:from-green-900/20 dark:to-background"
     >
       <GradientBlur />
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
