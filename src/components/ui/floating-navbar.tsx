@@ -7,6 +7,7 @@ import { useTheme } from "@/components/theme-provider";
 
 const menuItems = [
   { name: "Home", href: "#home" },
+  { name: "Sobre", href: "#about" },
   { name: "Habilidades", href: "#skills" },
   { name: "Experiência", href: "#experience" },
   { name: "Expertise", href: "#expertise" },

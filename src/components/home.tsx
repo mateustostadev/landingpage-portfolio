@@ -1,4 +1,5 @@
 import Hero from "./hero";
+import About from "./about";
 import Skills from "./skills";
 import Projects from "./projects";
 import Contact from "./contact";
@@ -14,6 +15,7 @@ function Home() {
       <div className="w-full min-h-screen bg-background">
         <FloatingNavbar />
         <Hero />
+        <About />
         <Skills />
         <Experience />
         <Expertise />

@@ -70,7 +70,7 @@ const SkillCard = ({ category, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group relative rounded-xl border border-green-200/30 dark:border-green-800/30 bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] overflow-hidden"
+      className="group relative rounded-xl border border-gray-200/50 dark:border-border bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       <motion.div
@@ -105,7 +105,7 @@ export default function Skills() {
   return (
     <div
       id="skills"
-      className="py-16 bg-gradient-to-b from-emerald-50 via-white to-emerald-100 dark:from-green-900/20 dark:to-background relative overflow-hidden"
+      className="py-16 bg-white dark:bg-background relative overflow-hidden"
     >
       <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

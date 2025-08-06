@@ -86,7 +86,7 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
       onClick={onToggle}
     >
       <div
-        className="group relative rounded-xl border border-green-200/30 dark:border-green-800/30 bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] cursor-pointer overflow-hidden"
+        className="group relative rounded-xl border border-gray-200/50 dark:border-border bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] cursor-pointer overflow-hidden"
         onMouseMove={handleMouseMove}
       >
         <motion.div
@@ -102,7 +102,7 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
               </h3>
               <Badge
                 variant="secondary"
-                className="text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300"
+                className="text-xs bg-gray-100 dark:bg-card text-green-800 dark:text-green-300"
               >
                 {exp.type}
               </Badge>
@@ -160,7 +160,7 @@ export default function Experience() {
   return (
     <div
       id="experience"
-      className="py-24 relative overflow-hidden bg-gradient-to-b from-emerald-50 via-white to-emerald-100 dark:from-green-900/20 dark:to-background"
+      className="py-24 relative overflow-hidden bg-white dark:bg-background"
     >
       <GradientBlur />
       <div className="mx-auto max-w-5xl px-6 lg:px-8">

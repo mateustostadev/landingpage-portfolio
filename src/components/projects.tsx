@@ -38,7 +38,7 @@ export default function Projects() {
   return (
     <div
       id="projects"
-      className="py-24 bg-gradient-to-b from-green-50 to-white dark:from-green-900/10 dark:to-background"
+      className="py-24 bg-white dark:bg-background"
     >
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
@@ -58,7 +58,7 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-green-200/50 dark:border-green-800/50 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+              <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-gray-200/50 dark:border-border shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                 <div className="relative">
                   <img
                     src={project.image}
@@ -79,7 +79,7 @@ export default function Projects() {
                       <Badge
                         key={i}
                         variant="secondary"
-                        className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300"
+                        className="bg-gray-100 dark:bg-card text-green-800 dark:text-green-300"
                       >
                         {tech}
                       </Badge>
@@ -89,7 +89,7 @@ export default function Projects() {
                 <CardFooter className="p-6 pt-0">
                   <Button
                     variant="outline"
-                    className="w-full group shadow-sm hover:shadow-md transition-shadow border-green-200 dark:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/20"
+                    className="w-full group shadow-sm hover:shadow-md transition-shadow border-gray-200 dark:border-border hover:bg-gray-50 dark:hover:bg-card"
                     asChild
                   >
                     <a

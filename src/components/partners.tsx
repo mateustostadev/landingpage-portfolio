@@ -45,7 +45,7 @@ export function Partners() {
   return (
     <section
       id="partners"
-      className="py-24 bg-gradient-to-b from-emerald-50 via-white to-emerald-100 dark:from-green-900/20 dark:to-background relative overflow-hidden"
+      className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">

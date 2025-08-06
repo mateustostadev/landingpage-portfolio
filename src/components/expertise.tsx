@@ -74,7 +74,7 @@ const ExpertiseCard = ({ service, index }) => {
       className="group relative"
       onMouseMove={handleMouseMove}
     >
-      <div className="relative rounded-xl border border-green-200/30 dark:border-green-800/30 bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] overflow-hidden h-full">
+      <div className="relative rounded-xl border border-gray-200/50 dark:border-border bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] overflow-hidden h-full">
         <motion.div
           className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
           style={{ background }}
@@ -97,7 +97,7 @@ export default function Expertise() {
   return (
     <div
       id="expertise"
-      className="py-24 bg-gradient-to-b from-emerald-50 via-white to-emerald-100 dark:from-green-900/20 dark:to-background relative overflow-hidden"
+      className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
       <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

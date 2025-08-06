@@ -28,7 +28,7 @@ export default function Contact() {
   return (
     <footer
       id="contact"
-      className="py-24 bg-gradient-to-b from-emerald-50 via-white to-emerald-100 dark:from-green-900/20 dark:to-background relative overflow-hidden"
+      className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
       <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -90,7 +90,7 @@ export default function Contact() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="relative bg-background hover:bg-green-50 dark:hover:bg-green-900/20 border-green-200 dark:border-green-800 shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="relative bg-background hover:bg-gray-50 dark:hover:bg-card border-gray-200 dark:border-border shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <social.icon className="h-5 w-5 text-green-600 dark:text-green-400 transition-transform group-hover:scale-110" />
                     </Button>
@@ -105,7 +105,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-green-200 dark:border-green-800 text-center text-sm text-green-600/80 dark:text-green-400/80"
+            className="mt-16 pt-8 border-t border-gray-200 dark:border-border text-center text-sm text-green-600/80 dark:text-green-400/80"
           >
             © {new Date().getFullYear()} Mateus Tosta. Todos os direitos
             reservados.
