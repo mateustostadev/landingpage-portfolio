@@ -113,12 +113,13 @@ console.log("Solução ativa - Monitoramento ativo");`,
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600 inline-block">
             Sobre Mim
           </h2>
         </motion.div>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Texto lateralizado à esquerda */}
