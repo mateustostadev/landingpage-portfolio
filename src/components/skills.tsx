@@ -1,7 +1,6 @@
-import { Code2, Brain, Database, Globe, Server, Bot } from "lucide-react";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { GradientBlur } from "@/components/ui/gradient-blur";
-import { MouseEvent } from "react";
+import { Globe, Server, Brain } from "lucide-react";
 
 const skillCategories = [
   {
@@ -48,54 +47,61 @@ const skillCategories = [
   },
 ];
 
-const SkillCard = ({ category, index }) => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+const SkillTag = ({ skill, delay }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ 
+        duration: 0.3,
+        delay,
+        ease: "easeOut"
+      }}
+      viewport={{ once: true }}
+      whileHover={{ 
+        scale: 1.05,
+        y: -2,
+        transition: { duration: 0.2 }
+      }}
+      className="px-3 py-2 text-sm font-medium bg-white dark:bg-card rounded-lg border border-gray-200 dark:border-border shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center min-h-[40px]"
+    >
+      <span className="text-gray-700 dark:text-gray-300 text-center">{skill}</span>
+    </motion.div>
+  );
+};
 
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: MouseEvent<HTMLDivElement>) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
-  const background = useMotionTemplate`radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(34, 197, 94, 0.15), transparent 80%)`;
-
+const SkillCategory = ({ category, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ 
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: "easeOut"
+      }}
       viewport={{ once: true }}
-      className="group relative rounded-xl border border-gray-200/50 dark:border-border bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] overflow-hidden"
-      onMouseMove={handleMouseMove}
+      className="h-full"
     >
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{ background }}
-      />
-      <div className="relative">
-        <category.icon className="h-8 w-8 mb-4 text-green-600 dark:text-green-500" />
-        <h3 className="font-semibold text-xl mb-4 text-green-800 dark:text-green-300">
-          {category.title}
-        </h3>
-        <ul className="grid grid-cols-2 gap-2">
+      <div className="h-full p-6 rounded-2xl bg-white dark:bg-card border border-gray-200 dark:border-border shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2.5 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/30">
+            <category.icon className="h-6 w-6 text-green-600 dark:text-green-400" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+            {category.title}
+          </h3>
+        </div>
+        
+        <div className="flex flex-wrap gap-2 flex-grow">
           {category.skills.map((skill, skillIndex) => (
-            <motion.li
+            <SkillTag
               key={skillIndex}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
-              className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
-              {skill}
-            </motion.li>
+              skill={skill}
+              delay={index * 0.1 + skillIndex * 0.05}
+            />
           ))}
-        </ul>
+        </div>
       </div>
     </motion.div>
   );
@@ -105,18 +111,34 @@ export default function Skills() {
   return (
     <div
       id="skills"
-      className="py-16 bg-white dark:bg-background relative overflow-hidden"
+      className="py-20 bg-white dark:bg-background relative overflow-hidden"
     >
       <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
-            Habilidades
-          </h2>
+        <div className="mx-auto max-w-3xl text-center mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
+          >
+            Habilidades Técnicas
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+          >
+            Tecnologias e ferramentas com as quais trabalho para entregar soluções de alta qualidade
+          </motion.p>
         </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
-            <SkillCard key={index} category={category} index={index} />
+            <SkillCategory key={index} category={category} index={index} />
           ))}
         </div>
       </div>

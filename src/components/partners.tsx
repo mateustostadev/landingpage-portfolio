@@ -33,7 +33,7 @@ export function Partners() {
 
   useAnimationFrame((t, delta) => {
     if (containerRef.current) {
-      x.current -= (delta / 1000) * 80; // velocidade em px/s
+      x.current -= (delta / 1000) * 60; // velocidade em px/s (reduzida para melhor experiência)
       const width = containerRef.current.scrollWidth / 2;
       if (Math.abs(x.current) >= width) {
         x.current = 0;
@@ -48,14 +48,24 @@ export function Partners() {
       className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 100, 
+            damping: 20 
+          }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-2xl text-center mb-16"
+        >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
             Clientes Parceiros
           </h2>
           <p className="text-muted-foreground text-lg">
             Empresas e instituições que confiam no meu trabalho
           </p>
-        </div>
+        </motion.div>
         <div className="relative w-full overflow-x-hidden">
           <div
             ref={containerRef}
@@ -63,9 +73,18 @@ export function Partners() {
             style={{ willChange: "transform" }}
           >
             {logos.map((partner, i) => (
-              <div
+              <motion.div
                 key={partner.name + i}
                 className="flex flex-col items-center justify-center bg-white rounded-xl p-4 shadow-md transition-all duration-300 w-52 h-40 mx-2"
+                whileHover={{ 
+                  y: -10,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 20 
+                }}
               >
                 <div className="relative w-full h-full flex items-center justify-center group">
                   <img
@@ -80,7 +99,7 @@ export function Partners() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

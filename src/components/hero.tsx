@@ -54,7 +54,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="relative w-full max-w-[350px] lg:max-w-[400px] xl:max-w-[450px]"
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-800/30 dark:to-emerald-900/30 blur-3xl rounded-full" />
@@ -90,12 +90,14 @@ export default function Hero() {
               <div className="relative group cursor-pointer">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="relative bg-background/80 backdrop-blur-xl rounded-2xl p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   <img
                     src="/assets/perfil.jpeg"
                     alt="Mateus Tosta"
                     className="rounded-xl w-full aspect-square object-cover"
+                    loading="eager"
                   />
                 </motion.div>
               </div>
@@ -105,7 +107,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="w-full max-w-2xl text-center lg:text-left"
           >
             <h1 className="font-extrabold tracking-tight text-5xl sm:text-6xl lg:text-7xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
@@ -124,52 +126,82 @@ export default function Hero() {
 
             {/* Indicadores de destaque */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-xl mx-auto lg:mx-0">
-              <div className="flex items-center gap-2 bg-white/90 dark:bg-card px-4 py-2 rounded-xl shadow-md border border-gray-200 dark:border-border min-w-[150px] justify-center w-full transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg group">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="flex items-center gap-2 bg-white/90 dark:bg-card px-4 py-2 rounded-xl shadow-md border border-gray-200 dark:border-border min-w-[150px] justify-center w-full transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg group"
+              >
                 <svg className="w-7 h-7 text-green-600 dark:text-green-400 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m13-6.13V7a4 4 0 00-3-3.87M4 10V7a4 4 0 013-3.87m13 6.13a4 4 0 01-3 3.87m-9 0A4 4 0 014 10m13 6.13A4 4 0 0117 20m-9 0A4 4 0 017 20" /></svg>
                 <div className="flex flex-col items-start">
                   <span className="font-extrabold text-base text-green-700 dark:text-green-300">+10</span>
                   <span className="text-green-700 dark:text-green-300 text-xs">clientes atendidos</span>
                 </div>
-              </div>
-              <div className="flex items-center gap-2 bg-white/90 dark:bg-card px-4 py-2 rounded-xl shadow-md border border-gray-200 dark:border-border min-w-[150px] justify-center w-full transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg group">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="flex items-center gap-2 bg-white/90 dark:bg-card px-4 py-2 rounded-xl shadow-md border border-gray-200 dark:border-border min-w-[150px] justify-center w-full transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg group"
+              >
                 <svg className="w-7 h-7 text-emerald-600 dark:text-emerald-400 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2a4 4 0 014-4h4m-6 6v2a4 4 0 004 4h4m-6-6a4 4 0 01-4-4V7a4 4 0 014-4h4a4 4 0 014 4v6a4 4 0 01-4 4H9z" /></svg>
                 <div className="flex flex-col items-start">
                   <span className="font-extrabold text-base text-green-700 dark:text-green-300">+15</span>
                   <span className="text-green-700 dark:text-green-300 text-xs">projetos entregues</span>
                 </div>
-              </div>
-              <div className="flex items-center gap-2 bg-white/90 dark:bg-card px-4 py-2 rounded-xl shadow-md border border-gray-200 dark:border-border min-w-[150px] justify-center w-full transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg group">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                className="flex items-center gap-2 bg-white/90 dark:bg-card px-4 py-2 rounded-xl shadow-md border border-gray-200 dark:border-border min-w-[150px] justify-center w-full transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg group"
+              >
                 <svg className="w-7 h-7 text-teal-600 dark:text-teal-400 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <div className="flex flex-col items-start">
                   <span className="font-extrabold text-base text-green-700 dark:text-green-300">3</span>
                   <span className="text-green-700 dark:text-green-300 text-xs">anos de experiência</span>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Botão de CTA */}
             <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start w-full">
-              <a
+              <motion.a
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
                 href="https://api.whatsapp.com/send?phone=5571996590332&text=Ol%C3%A1,%20Mateus!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20seu%20site!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 text-white font-extrabold text-lg shadow-lg border-0 hover:brightness-110 hover:-translate-y-0.5 hover:shadow-emerald-300/40 transition-all duration-200 text-center focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 text-white font-extrabold text-lg shadow-lg border-0 hover:brightness-110 hover:shadow-emerald-300/40 transition-all duration-200 text-center focus:outline-none focus:ring-2 focus:ring-emerald-300"
               >
                 <MessageSquareIcon className="w-5 h-5 mr-2 text-white opacity-80 transition-colors duration-200" />
                 Solicite um orçamento
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
                 href="#projects"
                 onClick={scrollToProjects}
-                className="inline-block w-full sm:w-auto px-8 py-3 rounded-full border-2 border-emerald-400 text-emerald-700 dark:text-emerald-300 font-extrabold text-lg bg-white/90 dark:bg-card shadow-xl hover:bg-gray-50 dark:hover:bg-card hover:-translate-y-1 hover:shadow-emerald-200/60 transition-all duration-200 text-center ring-2 ring-emerald-100/60 focus:ring-4 focus:ring-emerald-300/60"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-block w-full sm:w-auto px-8 py-3 rounded-full border-2 border-emerald-400 text-emerald-700 dark:text-emerald-300 font-extrabold text-lg bg-white/90 dark:bg-card shadow-xl hover:bg-gray-50 dark:hover:bg-card hover:shadow-emerald-200/60 transition-all duration-200 text-center ring-2 ring-emerald-100/60 focus:ring-4 focus:ring-emerald-300/60"
               >
                 Veja meus projetos
-              </a>
+              </motion.a>
             </div>
 
-            <p className="mt-8 text-sm text-muted-foreground">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="mt-8 text-sm text-muted-foreground"
+            >
               Atendimento personalizado, tecnologia de ponta e resultados reais para o seu negócio.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </div>

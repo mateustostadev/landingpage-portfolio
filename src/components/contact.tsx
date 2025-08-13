@@ -36,7 +36,12 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 100, 
+              damping: 20,
+              duration: 0.5 
+            }}
             viewport={{ once: true }}
             className="space-y-8"
           >
@@ -52,7 +57,15 @@ export default function Contact() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 100, 
+                  damping: 20,
+                  duration: 0.5, 
+                  delay: 0.2 
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 viewport={{ once: true }}
               >
                 <Button
@@ -84,7 +97,17 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 100, 
+                      damping: 20,
+                      delay: index * 0.1 
+                    }}
+                    whileHover={{ 
+                      y: -5,
+                      scale: 1.1 
+                    }}
+                    whileTap={{ scale: 0.9 }}
                     className="group"
                   >
                     <Button
@@ -103,7 +126,13 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 100, 
+              damping: 20,
+              duration: 0.5, 
+              delay: 0.4 
+            }}
             viewport={{ once: true }}
             className="mt-16 pt-8 border-t border-gray-200 dark:border-border text-center text-sm text-green-600/80 dark:text-green-400/80"
           >

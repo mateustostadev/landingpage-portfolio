@@ -74,7 +74,8 @@ console.log("Solução ativa - Monitoramento ativo");`,
   useEffect(() => {
     let currentIndex = 0;
     const currentStepData = workflowSteps[currentStep];
-    const fullText = `${currentStepData.title}\n${currentStepData.code}`;
+    const fullText = `${currentStepData.title}
+${currentStepData.code}`;
     
     setDisplayText("");
     setIsTyping(true);
@@ -111,7 +112,12 @@ console.log("Solução ativa - Monitoramento ativo");`,
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 100, 
+            damping: 20,
+            duration: 0.6 
+          }}
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
@@ -126,46 +132,75 @@ console.log("Solução ativa - Monitoramento ativo");`,
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 100, 
+              damping: 20,
+              duration: 0.6, 
+              delay: 0.2 
+            }}
             viewport={{ once: true }}
             className="space-y-6 lg:pr-8"
           >
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+            <motion.p 
+              className="text-sm sm:text-base leading-relaxed text-muted-foreground"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               Sou <span className="font-semibold text-green-700 dark:text-green-300">Mateus Tosta</span>, 
               tenho 26 anos e sou um desenvolvedor que acredita que boas soluções não nascem apenas de linhas de código — mas da 
               <span className="font-semibold text-green-700 dark:text-green-300"> escuta atenta</span>, do 
               <span className="font-semibold text-green-700 dark:text-green-300"> entendimento real dos problemas</span> e da 
               <span className="font-semibold text-green-700 dark:text-green-300"> capacidade de transformar ideias</span> em 
               ferramentas que funcionam de verdade.
-            </p>
+            </motion.p>
 
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+            <motion.p 
+              className="text-sm sm:text-base leading-relaxed text-muted-foreground"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               Com habilidades em desenvolvimento web, automações e inteligência artificial, venho criando 
               <span className="font-semibold text-green-700 dark:text-green-300"> soluções</span> que 
               <span className="font-semibold text-green-700 dark:text-green-300"> simplificam rotinas</span>, 
               <span className="font-semibold text-green-700 dark:text-green-300"> otimizam tempo</span> e geram 
               <span className="font-semibold text-green-700 dark:text-green-300"> impacto direto</span> no dia a dia de 
               empresas e pessoas.
-            </p>
+            </motion.p>
 
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+            <motion.p 
+              className="text-sm sm:text-base leading-relaxed text-muted-foreground"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <span className="font-bold text-green-700 dark:text-green-300">Meu trabalho tem um objetivo claro:</span> tornar a tecnologia uma aliada estratégica, 
               acessível e eficiente.
-            </p>
+            </motion.p>
 
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+            <motion.p 
+              className="text-sm sm:text-base leading-relaxed text-muted-foreground"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               Gosto de construir <span className="font-semibold text-green-700 dark:text-green-300">sistemas sob medida</span>, 
               que resolvem, organizam e entregam valor. Se você busca alguém que una técnica, visão e 
               <span className="font-semibold text-green-700 dark:text-green-300"> compromisso com resultados reais</span>, estou pronto para 
               colaborar com seu projeto.
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Terminal animado à direita */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 100, 
+              damping: 20,
+              duration: 0.6, 
+              delay: 0.4 
+            }}
+            whileHover={{ y: -10 }}
             viewport={{ once: true }}
             className="relative lg:pl-4"
           >
@@ -174,9 +209,21 @@ console.log("Solução ativa - Monitoramento ativo");`,
               {/* Header do terminal */}
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <motion.div 
+                    className="w-3 h-3 bg-red-500 rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  ></motion.div>
+                  <motion.div 
+                    className="w-3 h-3 bg-yellow-500 rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  ></motion.div>
+                  <motion.div 
+                    className="w-3 h-3 bg-green-500 rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  ></motion.div>
                 </div>
                 <div className="ml-4 text-xs sm:text-sm text-gray-400 font-mono">
                   mateus@workflow:~$
@@ -196,7 +243,12 @@ console.log("Solução ativa - Monitoramento ativo");`,
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 300, 
+                      damping: 20,
+                      duration: 0.5 
+                    }}
                     className="mt-4 text-blue-400 dark:text-blue-300"
                   >
                     {workflowSteps[currentStep].result}
@@ -207,13 +259,18 @@ console.log("Solução ativa - Monitoramento ativo");`,
               {/* Indicador de progresso - Responsivo */}
               <div className="mt-4 sm:mt-6 flex gap-1 justify-center">
                 {workflowSteps.map((_, index) => (
-                  <div
+                  <motion.div
                     key={index}
                     className={`h-1 sm:h-2 rounded-full transition-all duration-300 ${
                       index === currentStep
                         ? "bg-green-500 w-6 sm:w-8 md:w-12"
                         : "bg-gray-600 w-2 sm:w-3"
                     }`}
+                    whileHover={{ 
+                      scaleY: 1.5,
+                      originY: 0.5
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   />
                 ))}
               </div>

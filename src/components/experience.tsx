@@ -80,10 +80,17 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20,
+        duration: 0.4, 
+        ease: "easeOut" 
+      }}
       viewport={{ once: true, margin: "-100px" }}
       className={`relative w-full md:w-[calc(45%-2rem)] ${index % 2 === 0 ? "md:mr-8" : "md:ml-8"}`}
       onClick={onToggle}
+      whileHover={{ y: -3 }}
     >
       <div
         className="group relative rounded-xl border border-gray-200/50 dark:border-border bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] cursor-pointer overflow-hidden"
@@ -109,7 +116,12 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
             </div>
             <motion.div
               animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 20,
+                duration: 0.2 
+              }}
             >
               <ChevronDown className="h-4 w-4 text-green-600 dark:text-green-400" />
             </motion.div>
@@ -128,7 +140,12 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
               height: isExpanded ? "auto" : 0,
               opacity: isExpanded ? 1 : 0,
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 300, 
+              damping: 30,
+              duration: 0.3 
+            }}
             className="overflow-hidden"
           >
             <ul className="mt-4 space-y-1.5 text-xs text-muted-foreground">
@@ -140,7 +157,13 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
                     opacity: isExpanded ? 1 : 0,
                     x: isExpanded ? 0 : -10,
                   }}
-                  transition={{ duration: 0.2, delay: i * 0.05 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 20,
+                    duration: 0.2, 
+                    delay: i * 0.05 
+                  }}
                   className="list-disc list-inside group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors"
                 >
                   {activity}
@@ -165,9 +188,19 @@ export default function Experience() {
       <GradientBlur />
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 100, 
+              damping: 20 
+            }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
+          >
             Experiência Profissional
-          </h2>
+          </motion.h2>
         </div>
         <div className="relative">
           <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-green-300/30 via-green-300/50 to-green-300/30 dark:from-green-600/30 dark:via-green-600/50 dark:to-green-600/30" />
@@ -180,7 +213,18 @@ export default function Experience() {
               >
                 <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
                   <div className="w-2.5 h-2.5 rounded-full bg-green-600 dark:bg-green-400 shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.1)] z-10" />
-                  <div className="absolute w-4 h-4 rounded-full bg-green-400/20 dark:bg-green-400/20 animate-pulse" />
+                  <motion.div 
+                    className="absolute w-4 h-4 rounded-full bg-green-400/20 dark:bg-green-400/20"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.4, 0.2, 0.4]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
                 </div>
 
                 <ExperienceCard

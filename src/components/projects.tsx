@@ -42,12 +42,33 @@ export default function Projects() {
     >
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 100, 
+              damping: 20 
+            }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
+          >
             Projetos em Destaque
-          </h2>
-          <p className="text-muted-foreground">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 100, 
+              damping: 20, 
+              delay: 0.1 
+            }}
+            viewport={{ once: true }}
+            className="text-muted-foreground"
+          >
             Principais projetos desenvolvidos recentemente
-          </p>
+          </motion.p>
         </div>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 max-w-4xl mx-auto">
           {projects.map((project, index) => (
@@ -55,15 +76,24 @@ export default function Projects() {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 100, 
+                damping: 20,
+                duration: 0.5, 
+                delay: index * 0.1 
+              }}
+              whileHover={{ y: -5 }}
               viewport={{ once: true }}
             >
               <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-gray-200/50 dark:border-border shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                 <div className="relative">
-                  <img
+                  <motion.img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-48 object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 </div>
@@ -76,31 +106,38 @@ export default function Projects() {
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((tech, i) => (
-                      <Badge
+                      <motion.div
                         key={i}
-                        variant="secondary"
-                        className="bg-gray-100 dark:bg-card text-green-800 dark:text-green-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
-                        {tech}
-                      </Badge>
+                        <Badge
+                          variant="secondary"
+                          className="bg-gray-100 dark:bg-card text-green-800 dark:text-green-300"
+                        >
+                          {tech}
+                        </Badge>
+                      </motion.div>
                     ))}
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
-                  <Button
-                    variant="outline"
-                    className="w-full group shadow-sm hover:shadow-md transition-shadow border-gray-200 dark:border-border hover:bg-gray-50 dark:hover:bg-card"
-                    asChild
-                  >
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button
+                      variant="outline"
+                      className="w-full group shadow-sm hover:shadow-md transition-shadow border-gray-200 dark:border-border hover:bg-gray-50 dark:hover:bg-card"
+                      asChild
                     >
-                      <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      Visualizar
-                    </a>
-                  </Button>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                        Visualizar
+                      </a>
+                    </Button>
+                  </motion.div>
                 </CardFooter>
               </Card>
             </motion.div>
