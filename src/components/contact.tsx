@@ -6,8 +6,9 @@ import {
   Mail,
   MessageSquareIcon,
 } from "lucide-react";
-import { GradientBlur } from "@/components/ui/gradient-blur";
 import { motion } from "framer-motion";
+import { SectionBadge } from "@/components/ui/section-badge";
+import { Send } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/mateustostadev", label: "GitHub" },
@@ -30,8 +31,10 @@ export default function Contact() {
       id="contact"
       className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
-      <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex justify-center">
+          <SectionBadge icon={<Send className="w-4 h-4" />} title="Vamos Conversar?" />
+        </div>
         <div className="mx-auto max-w-2xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -46,9 +49,6 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
-                Vamos Conversar?
-              </h2>
               <p className="text-muted-foreground text-lg mb-8">
                 Estou sempre interessado em novos projetos e desafios. Entre em
                 contato para discutirmos como posso ajudar.
@@ -85,7 +85,7 @@ export default function Contact() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-green-800 dark:text-green-300">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                 Me encontre nas redes
               </h3>
               <div className="flex gap-4 justify-center">
@@ -113,9 +113,9 @@ export default function Contact() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="relative bg-background hover:bg-gray-50 dark:hover:bg-card border-gray-200 dark:border-border shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="relative bg-white dark:bg-card hover:bg-gray-50 dark:hover:bg-gray-800 border-gray-200 dark:border-border shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      <social.icon className="h-5 w-5 text-green-600 dark:text-green-400 transition-transform group-hover:scale-110" />
+                      <social.icon className="h-5 w-5 text-gray-700 dark:text-gray-300 transition-transform group-hover:scale-110" />
                     </Button>
                   </motion.a>
                 ))}
@@ -134,7 +134,7 @@ export default function Contact() {
               delay: 0.4 
             }}
             viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-gray-200 dark:border-border text-center text-sm text-green-600/80 dark:text-green-400/80"
+            className="mt-16 pt-8 border-t border-gray-200 dark:border-border text-center text-sm text-gray-600 dark:text-gray-400"
           >
             © {new Date().getFullYear()} Mateus Tosta. Todos os direitos
             reservados.

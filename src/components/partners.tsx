@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
+import { SectionBadge } from "@/components/ui/section-badge";
+import { Handshake } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const partners = [
@@ -49,36 +51,36 @@ export function Partners() {
       className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div 
+        <div className="flex justify-center">
+          <SectionBadge icon={<Handshake className="w-4 h-4" />} title="Clientes Parceiros" />
+        </div>
+        <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ 
-            type: "spring", 
-            stiffness: 100, 
-            damping: 20 
-          }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-2xl text-center mb-16"
+          className="text-muted-foreground text-lg text-center max-w-2xl mx-auto mt-4"
         >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
-            Clientes Parceiros
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Empresas e instituições que confiam no meu trabalho
-          </p>
-        </motion.div>
-        <div className="relative w-full overflow-x-hidden">
+          Empresas e instituições que confiam no meu trabalho
+        </motion.p>
+        
+        {/* Container do carrossel com overflow hidden */}
+        <div className="relative w-full overflow-hidden mt-16">
+          {/* Efeito de fade nas extremidades do carrossel */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-background to-transparent/0 z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-background to-transparent/0 z-10 pointer-events-none"></div>
+          
           <div
             ref={containerRef}
-            className="flex gap-12 items-center w-max select-none"
+            className="flex gap-12 items-center w-max select-none py-4"
             style={{ willChange: "transform" }}
           >
             {logos.map((partner, i) => (
               <motion.div
                 key={partner.name + i}
-                className="flex flex-col items-center justify-center bg-white rounded-xl p-4 shadow-md transition-all duration-300 w-52 h-40 mx-2"
+                className="flex flex-col items-center justify-center bg-white dark:bg-card rounded-xl p-6 shadow-md border border-gray-200/50 dark:border-border transition-all duration-300 w-48 h-36 mx-2"
                 whileHover={{ 
-                  y: -10,
+                  y: -8,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                 }}
                 transition={{ 
@@ -88,13 +90,14 @@ export function Partners() {
                 }}
               >
                 <div className="relative w-full h-full flex items-center justify-center group">
+                  <div className="absolute inset-0 bg-white rounded-lg flex items-center justify-center z-0"></div>
                   <OptimizedImage
                     src={partner.logo}
                     alt={partner.name}
-                    className="h-16 object-contain max-w-[90%] z-10"
+                    className="h-20 object-contain max-w-[85%] z-10 relative"
                     loading="lazy"
-                    width={120}
-                    height={60}
+                    width={140}
+                    height={80}
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl z-20">
                     <span className="text-base text-white font-semibold text-center px-2">

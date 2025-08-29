@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { SectionBadge } from "@/components/ui/section-badge";
+import { FolderOpen } from "lucide-react";
 
 const projects = [
   {
@@ -42,36 +44,10 @@ export default function Projects() {
       className="py-24 bg-white dark:bg-background"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 100, 
-              damping: 20 
-            }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
-          >
-            Projetos em Destaque
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 100, 
-              damping: 20, 
-              delay: 0.1 
-            }}
-            viewport={{ once: true }}
-            className="text-muted-foreground"
-          >
-            Principais projetos desenvolvidos recentemente
-          </motion.p>
+        <div className="flex justify-center">
+          <SectionBadge icon={<FolderOpen className="w-4 h-4" />} title="Projetos em Destaque" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mt-12">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -105,10 +81,10 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 </div>
                 <CardContent className="p-6 flex-grow">
-                  <h3 className="font-semibold text-xl mb-3 text-green-800 dark:text-green-300">
+                  <h3 className="font-semibold text-xl mb-3 text-gray-900 dark:text-gray-100">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -120,7 +96,7 @@ export default function Projects() {
                       >
                         <Badge
                           variant="secondary"
-                          className="bg-gray-100 dark:bg-card text-green-800 dark:text-green-300"
+                          className="bg-gray-100 dark:bg-card text-gray-700 dark:text-gray-300"
                         >
                           {tech}
                         </Badge>
@@ -140,8 +116,8 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                        Visualizar
+                        <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform text-gray-600 dark:text-gray-400" />
+                        <span className="text-gray-700 dark:text-gray-300">Visualizar</span>
                       </a>
                     </Button>
                   </motion.div>

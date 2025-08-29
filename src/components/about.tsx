@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { GradientBlur } from "@/components/ui/gradient-blur";
 import { useState, useEffect } from "react";
+import { SectionBadge } from "@/components/ui/section-badge";
+import { User } from "lucide-react";
 
 export default function About() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -106,26 +107,10 @@ ${currentStepData.code}`;
       id="about"
       className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
-      <GradientBlur />
-
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ 
-            type: "spring", 
-            stiffness: 100, 
-            damping: 20,
-            duration: 0.6 
-          }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600 inline-block">
-            Sobre Mim
-          </h2>
-        </motion.div>
-
+        <div className="flex justify-center">
+          <SectionBadge icon={<User className="w-4 h-4" />} title="Sobre Mim" />
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Texto lateralizado à esquerda */}

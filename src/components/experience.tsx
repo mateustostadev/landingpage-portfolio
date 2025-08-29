@@ -1,7 +1,7 @@
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { GradientBlur } from "@/components/ui/gradient-blur";
+import { SectionBadge } from "@/components/ui/section-badge";
 import { Badge } from "@/components/ui/badge";
-import { BriefcaseIcon, CalendarIcon, ChevronDown } from "lucide-react";
+import { BriefcaseIcon, ChevronDown } from "lucide-react";
 import { useState, MouseEvent } from "react";
 
 const experiences = [
@@ -103,13 +103,13 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
         <div className="relative">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <BriefcaseIcon className="h-4 w-4 text-green-600 dark:text-green-400" />
-              <h3 className="font-semibold text-base text-green-800 dark:text-green-300">
+              <BriefcaseIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              <h3 className="font-semibold text-base text-gray-900 dark:text-gray-100">
                 {exp.company}
               </h3>
               <Badge
                 variant="secondary"
-                className="text-xs bg-gray-100 dark:bg-card text-green-800 dark:text-green-300"
+                className="text-xs bg-gray-100 dark:bg-card text-gray-700 dark:text-gray-300"
               >
                 {exp.type}
               </Badge>
@@ -123,14 +123,14 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
                 duration: 0.2 
               }}
             >
-              <ChevronDown className="h-4 w-4 text-green-600 dark:text-green-400" />
+              <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-400" />
             </motion.div>
           </div>
-          <p className="text-sm text-green-700 dark:text-green-400 font-medium">
+          <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">
             {exp.role}
           </p>
-          <div className="flex items-center gap-1.5 text-green-600/80 dark:text-green-400/80 text-xs mt-2">
-            <CalendarIcon className="h-3.5 w-3.5" />
+          <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-xs mt-2">
+            <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             <span>{exp.period}</span>
           </div>
 
@@ -148,7 +148,7 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
             }}
             className="overflow-hidden"
           >
-            <ul className="mt-4 space-y-1.5 text-xs text-muted-foreground">
+            <ul className="mt-4 space-y-1.5 text-xs text-gray-600 dark:text-gray-400">
               {exp.activities.map((activity, i) => (
                 <motion.li
                   key={i}
@@ -164,7 +164,7 @@ const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
                     duration: 0.2, 
                     delay: i * 0.05 
                   }}
-                  className="list-disc list-inside group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors"
+                  className="list-disc list-inside group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors"
                 >
                   {activity}
                 </motion.li>
@@ -185,25 +185,12 @@ export default function Experience() {
       id="experience"
       className="py-24 relative overflow-hidden bg-white dark:bg-background"
     >
-      <GradientBlur />
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 100, 
-              damping: 20 
-            }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
-          >
-            Experiência Profissional
-          </motion.h2>
+        <div className="flex justify-center">
+          <SectionBadge icon={<BriefcaseIcon className="w-4 h-4" />} title="Experiência Profissional" />
         </div>
         <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-green-300/30 via-green-300/50 to-green-300/30 dark:from-green-600/30 dark:via-green-600/50 dark:to-green-600/30" />
+          <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-gray-300/30 via-gray-300/50 to-gray-300/30 dark:from-gray-600/30 dark:via-gray-600/50 dark:to-gray-600/30" />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -212,9 +199,9 @@ export default function Experience() {
                 className={`relative flex items-center justify-center ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"}`}
               >
                 <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-600 dark:bg-green-400 shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.1)] z-10" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-gray-400 dark:bg-gray-500 shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.1)] z-10" />
                   <motion.div 
-                    className="absolute w-4 h-4 rounded-full bg-green-400/20 dark:bg-green-400/20"
+                    className="absolute w-4 h-4 rounded-full bg-gray-300/20 dark:bg-gray-600/20"
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.4, 0.2, 0.4]

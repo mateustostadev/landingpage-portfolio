@@ -1,5 +1,5 @@
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { GradientBlur } from "@/components/ui/gradient-blur";
+import { SectionBadge } from "@/components/ui/section-badge";
 import { MouseEvent, useState } from "react";
 import {
   Cloud,
@@ -209,36 +209,9 @@ export default function Services() {
       id="services"
       className="py-24 bg-white dark:bg-background relative overflow-hidden"
     >
-      <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 100, 
-              damping: 20 
-            }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
-          >
-            Serviços
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 100, 
-              damping: 20, 
-              delay: 0.1 
-            }}
-            viewport={{ once: true }}
-            className="mt-4 text-lg text-muted-foreground"
-          >
-            Soluções completas para transformar sua ideia em realidade digital
-          </motion.p>
+        <div className="flex justify-center">
+          <SectionBadge icon={<Settings className="w-4 h-4" />} title="Serviços" />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">

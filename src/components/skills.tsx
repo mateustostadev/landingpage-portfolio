@@ -1,76 +1,44 @@
+import React from "react";
 import { motion } from "framer-motion";
-import { GradientBlur } from "@/components/ui/gradient-blur";
-import { Globe, Server, Brain } from "lucide-react";
+import { SectionBadge } from "@/components/ui/section-badge";
+import { Code, Server, Brain, Figma } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Frontend",
-    icon: Globe,
+    icon: Code,
     skills: [
-      "React",
-      "TypeScript",
-      "TailwindCSS",
-      "Next.js",
-      "HTML5/CSS3",
-      "JavaScript",
-      "Redux",
-      "Styled Components",
+      "React", "TypeScript", "TailwindCSS", "Next.js", 
+      "HTML5/CSS3", "JavaScript", "Redux", "Styled Components"
     ],
   },
   {
     title: "Backend",
     icon: Server,
     skills: [
-      "PHP/Laravel",
-      "Node.js",
-      "Python",
-      "RESTful APIs",
-      "MySQL",
-      "PostgreSQL",
-      "MongoDB",
-      "Docker",
+      "PHP/Laravel", "Node.js", "Python", "RESTful APIs", 
+      "MySQL", "PostgreSQL", "MongoDB", "Docker"
     ],
   },
   {
     title: "Inteligência Artificial",
     icon: Brain,
     skills: [
-      "LangChain",
-      "CrewAI",
-      "LangFlow",
-      "Agentes Verticais",
-      "R.A.G",
-      "Prompt Engineering",
-      "Automação com IA",
-      "RPA",
+      "LangChain", "CrewAI", "LangFlow", "Agentes Verticais", 
+      "R.A.G", "Prompt Engineering", "Automação com IA", "RPA"
+    ],
+  },
+  {
+    title: "UX/UI Design",
+    icon: Figma,
+    skills: [
+      "Figma", "Framer", "Design Systems", "Prototipagem", 
+      "User Research", "Wireframing", "Design Thinking", "Mobile First"
     ],
   },
 ];
 
-const SkillTag = ({ skill, delay }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ 
-        duration: 0.3,
-        delay,
-        ease: "easeOut"
-      }}
-      viewport={{ once: true }}
-      whileHover={{ 
-        scale: 1.05,
-        y: -2,
-        transition: { duration: 0.2 }
-      }}
-      className="px-3 py-2 text-sm font-medium bg-white dark:bg-card rounded-lg border border-gray-200 dark:border-border shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center min-h-[40px]"
-    >
-      <span className="text-gray-700 dark:text-gray-300 text-center">{skill}</span>
-    </motion.div>
-  );
-};
-
-const SkillCategory = ({ category, index }) => {
+const SkillCategory = ({ category, index }: { category: any; index: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -93,15 +61,25 @@ const SkillCategory = ({ category, index }) => {
           </h3>
         </div>
         
-        <div className="flex flex-wrap gap-2 flex-grow">
-          {category.skills.map((skill, skillIndex) => (
-            <SkillTag
+        <ul className="space-y-3 flex-grow">
+          {category.skills.map((skill: string, skillIndex: number) => (
+            <motion.li
               key={skillIndex}
-              skill={skill}
-              delay={index * 0.1 + skillIndex * 0.05}
-            />
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.3,
+                delay: index * 0.1 + skillIndex * 0.05,
+                ease: "easeOut"
+              }}
+              viewport={{ once: true }}
+              className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
+            >
+              <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0"></div>
+              <span className="text-sm">{skill}</span>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </motion.div>
   );
@@ -113,30 +91,12 @@ export default function Skills() {
       id="skills"
       className="py-20 bg-white dark:bg-background relative overflow-hidden"
     >
-      <GradientBlur />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-emerald-600 to-green-600"
-          >
-            Habilidades Técnicas
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-          >
-            Tecnologias e ferramentas com as quais trabalho para entregar soluções de alta qualidade
-          </motion.p>
+        <div className="flex justify-center">
+          <SectionBadge icon={<Code className="w-4 h-4" />} title="Habilidades Técnicas" />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
           {skillCategories.map((category, index) => (
             <SkillCategory key={index} category={category} index={index} />
           ))}
