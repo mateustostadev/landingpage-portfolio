@@ -106,4 +106,6 @@ export function Partners() {
       </div>
     </section>
   );
-} 
+}
+
+export default Partners; 

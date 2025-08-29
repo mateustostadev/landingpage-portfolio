@@ -31,5 +31,37 @@ export default defineConfig({
   server: {
     // @ts-ignore
     allowedHosts: true,
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separa as bibliotecas pesadas em chunks diferentes
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'framer-motion': ['framer-motion'],
+          'radix-ui': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-popover',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-toast'
+          ],
+          'ui-components': [
+            'lucide-react',
+            'cmdk',
+            'embla-carousel-react'
+          ],
+          'utils': [
+            'class-variance-authority',
+            'clsx',
+            'tailwind-merge'
+          ]
+        }
+      }
+    },
+    // Aumenta o limite de aviso de chunk size
+    chunkSizeWarningLimit: 1000
   }
 });
