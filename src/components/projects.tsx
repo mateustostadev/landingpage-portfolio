@@ -41,7 +41,7 @@ export default function Projects() {
       id="projects"
       className="py-24 bg-white dark:bg-background"
     >
-      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function Projects() {
             Principais projetos desenvolvidos recentemente
           </motion.p>
         </div>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -87,7 +87,7 @@ export default function Projects() {
               whileHover={{ y: -5 }}
               viewport={{ once: true }}
             >
-              <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-gray-200/50 dark:border-border shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+              <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-gray-200/50 dark:border-border shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] h-full flex flex-col">
                 <div className="relative">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
@@ -104,7 +104,7 @@ export default function Projects() {
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 </div>
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex-grow">
                   <h3 className="font-semibold text-xl mb-3 text-green-800 dark:text-green-300">
                     {project.title}
                   </h3>
