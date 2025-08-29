@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { GradientBlur } from "@/components/ui/gradient-blur";
 import { Brain, Code2, Database, Cpu, Bot, Blocks, MessageSquareIcon } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const floatingIcons = [
   { Icon: Brain, delay: 0, x: -80, y: -40 },
@@ -93,11 +94,13 @@ export default function Hero() {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="relative bg-background/80 backdrop-blur-xl rounded-2xl p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
-                  <img
+                  <OptimizedImage
                     src="/assets/perfil.jpeg"
                     alt="Mateus Tosta"
                     className="rounded-xl w-full aspect-square object-cover"
                     loading="eager"
+                    width={400}
+                    height={400}
                   />
                 </motion.div>
               </div>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const projects = [
   {
@@ -88,13 +89,19 @@ export default function Projects() {
             >
               <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-gray-200/50 dark:border-border shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                 <div className="relative">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
+                  <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
-                  />
+                  >
+                    <OptimizedImage
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-48 object-cover"
+                      loading="lazy"
+                      width={600}
+                      height={300}
+                    />
+                  </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 </div>
                 <CardContent className="p-6">

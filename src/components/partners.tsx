@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const partners = [
   {
@@ -87,11 +88,13 @@ export function Partners() {
                 }}
               >
                 <div className="relative w-full h-full flex items-center justify-center group">
-                  <img
+                  <OptimizedImage
                     src={partner.logo}
                     alt={partner.name}
                     className="h-16 object-contain max-w-[90%] z-10"
                     loading="lazy"
+                    width={120}
+                    height={60}
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl z-20">
                     <span className="text-base text-white font-semibold text-center px-2">
