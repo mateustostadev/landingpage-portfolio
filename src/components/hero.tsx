@@ -53,7 +53,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="relative w-full max-w-[250px] lg:max-w-[300px] xl:max-w-[350px]"
+            className="relative w-full max-w-[250px] lg:max-w-[300px] xl:max-w-[350px] lg:-ml-12"
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-800/30 dark:to-emerald-900/30 blur-3xl rounded-full" />
             <div className="absolute -inset-4 bg-gradient-to-b from-green-100 to-emerald-100 dark:from-green-800/30 dark:to-emerald-900/30 blur-2xl rounded-[40%] rotate-12" />
@@ -89,12 +89,12 @@ export default function Hero() {
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative bg-background/80 backdrop-blur-xl rounded-2xl p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+                  className="relative bg-background/80 backdrop-blur-xl rounded-full p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   <OptimizedImage
                     src="/assets/perfil.jpeg"
                     alt="Mateus Tosta"
-                    className="rounded-xl w-full aspect-square object-cover"
+                    className="rounded-full w-full aspect-square object-cover object-center scale-110"
                     loading="eager"
                     width={300}
                     height={300}

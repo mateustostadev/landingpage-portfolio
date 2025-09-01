@@ -9,7 +9,7 @@ const skillCategories = [
     icon: Code,
     skills: [
       "React", "TypeScript", "TailwindCSS", "Next.js", 
-      "HTML5/CSS3", "JavaScript", "Redux", "Styled Components"
+      "HTML5/CSS3", "JavaScript", "Vue.js", "Vite"
     ],
   },
   {
