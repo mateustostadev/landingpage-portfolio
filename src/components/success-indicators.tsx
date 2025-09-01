@@ -24,7 +24,7 @@ const indicators = [
 
 export function SuccessIndicators() {
   return (
-    <div className="py-12 bg-white dark:bg-background border-t border-gray-100 dark:border-gray-800">
+    <div className="pt-8 bg-white dark:bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
