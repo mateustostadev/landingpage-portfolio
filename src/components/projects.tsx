@@ -9,6 +9,14 @@ import { FolderOpen } from "lucide-react";
 
 const projects = [
   {
+    title: "Landing Page - Psicóloga Josiane Cordeiro",
+    description:
+      "Landing page profissional para a psicóloga Josiane Cordeiro, com informações sobre seus serviços, especialidades e contato.",
+    image: "/assets/projeto-josiane.png",
+    tech: ["React", "TypeScript", "Vite", "Tailwind", "Shadcn/ui"],
+    link: "https://josianecordeiro.com.br",
+  },
+  {
     title: "API de Competições de Surfe",
     description:
       "API RESTful em Laravel para gerenciamento de competições de surfe, incluindo surfistas, baterias, ondas e sistema de pontuação.",
@@ -27,11 +35,10 @@ const projects = [
     link: "https://github.com/mateustostadev/verificador",
   },
   {
-    title: "E-commerce Cantinho das Flores",
+    title: "E-commerce - Cantinho das Flores",
     description:
       "Sistema E-commerce para uma floricultura localizada em Salvador-BA, especializados na venda de flores e arranjos personalizados para diversas ocasiões.",
-    image:
-      "https://plus.unsplash.com/premium_photo-1676475964992-6404b8db0b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/assets/projeto-cantinho.png",
     tech: ["Wordpress", "PHP", "MySQL", "Mercado Pago API"],
     link: "https://cantinhodasflores.com",
   },
@@ -41,13 +48,13 @@ export default function Projects() {
   return (
     <div
       id="projects"
-      className="py-24 bg-white dark:bg-background"
+      className="py-20 bg-white dark:bg-background"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex justify-center">
           <SectionBadge icon={<FolderOpen className="w-4 h-4" />} title="Projetos em Destaque" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto mt-12">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -63,40 +70,41 @@ export default function Projects() {
               whileHover={{ y: -5 }}
               viewport={{ once: true }}
             >
-              <Card className="overflow-hidden group hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 border-gray-200/50 dark:border-border shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] h-full flex flex-col">
+              <Card className="overflow-hidden group hover:shadow-[0_8px_25px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_25px_rgba(0,0,0,0.3)] transition-all duration-300 border-gray-200/50 dark:border-border shadow-[0_4px_15px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_15px_rgba(0,0,0,0.2)] h-full flex flex-col rounded-xl">
                 <div className="relative">
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
                     <OptimizedImage
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-44 object-cover"
                       loading="lazy"
                       width={600}
                       height={300}
                     />
                   </motion.div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/85 to-transparent" />
                 </div>
-                <CardContent className="p-6 flex-grow">
-                  <h3 className="font-semibold text-xl mb-3 text-gray-900 dark:text-gray-100">
+                <CardContent className="p-5 flex-grow">
+                  <h3 className="font-bold text-xl mb-2.5 text-gray-900 dark:text-gray-100">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {project.tech.map((tech, i) => (
                       <motion.div
                         key={i}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       >
                         <Badge
                           variant="secondary"
-                          className="bg-gray-100 dark:bg-card text-gray-700 dark:text-gray-300"
+                          className="bg-gray-100 dark:bg-card text-gray-700 dark:text-gray-300 px-2.5 py-1 text-xs"
                         >
                           {tech}
                         </Badge>
@@ -104,11 +112,11 @@ export default function Projects() {
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="p-6 pt-0">
+                <CardFooter className="p-5 pt-0">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button
                       variant="outline"
-                      className="w-full group shadow-sm hover:shadow-md transition-shadow border-gray-200 dark:border-border hover:bg-gray-50 dark:hover:bg-card"
+                      className="w-full group shadow-sm hover:shadow transition-all duration-300 border-gray-200 dark:border-border hover:bg-gray-50 dark:hover:bg-card rounded-lg py-5"
                       asChild
                     >
                       <a
@@ -117,7 +125,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform text-gray-600 dark:text-gray-400" />
-                        <span className="text-gray-700 dark:text-gray-300">Visualizar</span>
+                        <span className="text-gray-700 dark:text-gray-300 text-sm">Visualizar Projeto</span>
                       </a>
                     </Button>
                   </motion.div>
