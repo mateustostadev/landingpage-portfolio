@@ -260,10 +260,6 @@ ${currentStepData.code}`;
                 ))}
               </div>
             </div>
-
-            {/* Linhas decorativas */}
-            <div className="absolute -top-4 -right-4 w-16 sm:w-20 h-16 sm:h-20 border-t-2 border-r-2 border-green-300/30 dark:border-green-400/30 rounded-tr-xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-12 sm:w-16 h-12 sm:h-16 border-b-2 border-l-2 border-emerald-300/30 dark:border-emerald-400/30 rounded-bl-xl"></div>
           </motion.div>
         </div>
       </div>
