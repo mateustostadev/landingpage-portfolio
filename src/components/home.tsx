@@ -20,8 +20,8 @@ function Home() {
         <About />
         <Skills />
         <Experience />
-        <Services />
         <Partners />
+        <Services />
         <Projects />
         <Contact />
       </div>
