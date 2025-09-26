@@ -8,9 +8,30 @@ import {
   Server,
   Bot,
   ChevronDown,
+  Layout,
 } from "lucide-react";
 
 const services = [
+  {
+    icon: Layout,
+    title: "Desenvolvimento de Landing Pages",
+    description:
+      "Landing pages otimizadas para conversão com design moderno e responsivo.",
+    faq: [
+      {
+        question: "Quais elementos são importantes em uma landing page eficaz?",
+        answer: "Uma landing page eficaz inclui um título claro, descrição concisa do valor, depoimentos, demonstração do produto e um call-to-action bem posicionado."
+      },
+      {
+        question: "Quanto tempo leva para desenvolver uma landing page?",
+        answer: "O tempo de desenvolvimento varia conforme a complexidade do projeto, mas normalmente leva de 3 a 7 dias úteis após a aprovação do design e conteúdo."
+      },
+      {
+        question: "Como você otimiza as landing pages para conversão?",
+        answer: "Utilizo técnicas de UX/UI, testes A/B e análise de comportamento do usuário para otimizar elementos como layout, cores, botões e formulários."
+      }
+    ]
+  },
   {
     icon: Cloud,
     title: "Desenvolvimento de SaaS",
