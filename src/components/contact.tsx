@@ -14,7 +14,7 @@ const socialLinks = [
   { icon: Github, href: "https://github.com/mateustostadev", label: "GitHub" },
   {
     icon: Linkedin,
-    href: "https://www.linkedin.com/in/mateus-tosta-335908178/",
+    href: "https://www.linkedin.com/in/mateus-tosta-dev/",
     label: "LinkedIn",
   },
   {
