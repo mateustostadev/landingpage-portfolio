@@ -7,58 +7,92 @@ import { OptimizedImage } from "@/components/ui/optimized-image";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { FolderOpen } from "lucide-react";
 import React, { useRef } from "react";
-
-const projects = [
-  {
-    title: "Landing Page - Psicóloga Josiane Cordeiro",
-    description:
-      "Landing page profissional para a psicóloga Josiane Cordeiro, com informações sobre seus serviços, especialidades e contato.",
-    image: "/assets/projeto-josiane.png",
-    tech: ["React", "TypeScript", "Vite", "Tailwind", "Shadcn/ui"],
-    link: "https://josianecordeiro.com.br",
-  },
-  {
-    title: "API de Competições de Surfe",
-    description:
-      "API RESTful em Laravel para gerenciamento de competições de surfe, incluindo surfistas, baterias, ondas e sistema de pontuação.",
-    image:
-      "https://images.unsplash.com/photo-1623282033815-40b05d96c903?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tech: ["Laravel", "MySQL", "RESTful API", "PHP"],
-    link: "https://github.com/mateustostadev/surf-api",
-  },
-  {
-    title: "Sistema de Disparo WhatsApp",
-    description:
-      "Plataforma automatizada para disparo de mensagens WhatsApp com verificação de números ativos e gestão de instâncias.",
-    image:
-      "https://plus.unsplash.com/premium_photo-1683936163516-ec4c53227e26?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tech: ["Node.js", "PHP", "MySQL", "WhatsApp API"],
-    link: "https://github.com/mateustostadev/verificador",
-  },
-  {
-    title: "E-commerce - Cantinho das Flores",
-    description:
-      "Sistema E-commerce para uma floricultura localizada em Salvador-BA, especializados na venda de flores e arranjos personalizados para diversas ocasiões.",
-    image: "/assets/projeto-cantinho.png",
-    tech: ["Wordpress", "PHP", "MySQL", "Mercado Pago API"],
-    link: "https://cantinhodasflores.com",
-  },
-  {
-    title: "Landing Page - ChamaAI da Oncode",
-    description:
-      "Landing page para o produto ChamaAI da Oncode, a plataforma exclusiva da Oncode que transforma a maneira como sua empresa lida com o atendimento, utilizando as mais avançadas tecnologias de Inteligência Artificial.",
-    image: "/assets/imagem-chama.png",
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://chamaai.online",
-  },
-];
-
-// Duplicar a lista para efeito de loop infinito
-const duplicatedProjects = [...projects, ...projects];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useRef(0);
+  const { language, t } = useLanguage();
+
+  const projectsData = {
+    pt: [
+      {
+        title: "Landing Page - Psicóloga Josiane Cordeiro",
+        description:
+          "Landing page profissional para a psicóloga Josiane Cordeiro, com informações sobre seus serviços, especialidades e contato.",
+        image: "/assets/projeto-josiane.png",
+        tech: ["React", "TypeScript", "Vite", "Tailwind", "Shadcn/ui"],
+        link: "https://josianecordeiro.com.br",
+      },
+      {
+        title: "API de Competições de Surfe",
+        description:
+          "API RESTful em Laravel para gerenciamento de competições de surfe, incluindo surfistas, baterias, ondas e sistema de pontuação.",
+        image:
+          "https://images.unsplash.com/photo-1623282033815-40b05d96c903?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        tech: ["Laravel", "MySQL", "RESTful API", "PHP"],
+        link: "https://github.com/mateustostadev/surf-api",
+      },
+      {
+        title: "Sistema de Disparo WhatsApp",
+        description:
+          "Plataforma automatizada para disparo de mensagens WhatsApp com verificação de números ativos e gestão de instâncias.",
+        image:
+          "https://plus.unsplash.com/premium_photo-1683936163516-ec4c53227e26?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        tech: ["Node.js", "PHP", "MySQL", "WhatsApp API"],
+        link: "https://github.com/mateustostadev/verificador",
+      },
+      {
+        title: "Landing Page - ChamaAI da Oncode",
+        description:
+          "Landing page para o produto ChamaAI da Oncode, a plataforma exclusiva da Oncode que transforma a maneira como sua empresa lida com o atendimento, utilizando as mais avançadas tecnologias de Inteligência Artificial.",
+        image: "/assets/imagem-chama.png",
+        tech: ["HTML", "CSS", "JavaScript"],
+        link: "https://chamaai.online",
+      },
+    ],
+    en: [
+      {
+        title: "Landing Page - Psychologist Josiane Cordeiro",
+        description:
+          "Professional landing page for psychologist Josiane Cordeiro, featuring information about her services, specialties, and contact.",
+        image: "/assets/projeto-josiane.png",
+        tech: ["React", "TypeScript", "Vite", "Tailwind", "Shadcn/ui"],
+        link: "https://josianecordeiro.com.br",
+      },
+      {
+        title: "Surfing Competitions API",
+        description:
+          "RESTful API built with Laravel to manage surfing competitions, including surfers, heats, waves, and scoring systems.",
+        image:
+          "https://images.unsplash.com/photo-1623282033815-40b05d96c903?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        tech: ["Laravel", "MySQL", "RESTful API", "PHP"],
+        link: "https://github.com/mateustostadev/surf-api",
+      },
+      {
+        title: "WhatsApp Mass Messaging System",
+        description:
+          "Automated platform for sending bulk WhatsApp messages, featuring active number verification and instance management.",
+        image:
+          "https://plus.unsplash.com/premium_photo-1683936163516-ec4c53227e26?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        tech: ["Node.js", "PHP", "MySQL", "WhatsApp API"],
+        link: "https://github.com/mateustostadev/verificador",
+      },
+      {
+        title: "Landing Page - ChamaAI by Oncode",
+        description:
+          "Landing page for the ChamaAI product by Oncode, an exclusive platform that transforms the way your company handles customer service using advanced Artificial Intelligence technologies.",
+        image: "/assets/imagem-chama.png",
+        tech: ["HTML", "CSS", "JavaScript"],
+        link: "https://chamaai.online",
+      },
+    ]
+  };
+
+  const projects = language === 'pt' ? projectsData.pt : projectsData.en;
+
+  // Duplicar a lista para efeito de loop infinito
+  const duplicatedProjects = [...projects, ...projects];
 
   useAnimationFrame((t, delta) => {
     if (containerRef.current) {
@@ -78,24 +112,15 @@ export default function Projects() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex justify-center">
-          <SectionBadge icon={<FolderOpen className="w-4 h-4" />} title="Projetos em Destaque" />
+          <SectionBadge icon={<FolderOpen className="w-4 h-4" />} title={t('projects.badge')} />
         </div>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-muted-foreground text-lg text-center max-w-2xl mx-auto mt-4"
-        >
-          Conheça alguns dos projetos em que atuei
-        </motion.p>
-        
+
         {/* Container do carrossel com overflow hidden */}
         <div className="relative w-full overflow-hidden mt-16">
           {/* Efeito de fade nas extremidades do carrossel */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-background to-transparent/0 z-10 pointer-events-none"></div>
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-background to-transparent/0 z-10 pointer-events-none"></div>
-          
+
           <div
             ref={containerRef}
             className="flex gap-6 md:gap-8 items-start w-max select-none py-4"
@@ -105,14 +130,14 @@ export default function Projects() {
               <motion.div
                 key={`${project.title}-${i}`}
                 className="flex-shrink-0 w-64 sm:w-72 bg-transparent dark:bg-transparent rounded-xl shadow-none border-0 transition-all duration-300 p-1.5"
-                whileHover={{ 
+                whileHover={{
                   y: -6,
                   boxShadow: "0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04)"
                 }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 300, 
-                  damping: 20 
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20
                 }}
                 onMouseEnter={(e) => {
                   e.stopPropagation(); // Prevent hover events from bubbling up to container
@@ -187,7 +212,7 @@ export default function Projects() {
                           rel="noopener noreferrer"
                         >
                           <ExternalLink className="mr-2 h-3.5 w-3.5 group-hover:scale-110 transition-transform text-gray-600 dark:text-gray-400" />
-                          <span className="text-gray-700 dark:text-gray-300 text-xs">Visualizar Projeto</span>
+                          <span className="text-gray-700 dark:text-gray-300 text-xs">{t('projects.view')}</span>
                         </a>
                       </Button>
                     </motion.div>

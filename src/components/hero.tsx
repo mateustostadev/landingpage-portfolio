@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Brain, Code2, Database, Cpu, Bot, Blocks, User, Eye } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const floatingIcons = [
   { Icon: Brain, delay: 0, x: -80, y: -40 },
@@ -33,6 +34,8 @@ const TypewriterText = ({ text }: { text: string }) => {
 };
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   // Função para scroll suave até a seção de projetos
   const scrollToProjects = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -115,7 +118,7 @@ export default function Hero() {
                 <TypewriterText text="Mateus Tosta" />
               </span>
               <span className="block text-green-600 dark:text-green-400 mt-4 text-2xl sm:text-4xl lg:text-5xl">
-                Desenvolvedor Fullstack & IA
+                {t('hero.title')}
               </span>
             </h1>
 
@@ -133,7 +136,8 @@ export default function Hero() {
                 className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-extrabold text-lg shadow-lg hover:brightness-110 hover:shadow-green-300/40 transition-all duration-200 text-center focus:outline-none focus:ring-2 focus:ring-green-300"
               >
                 <User className="w-5 h-5 mr-2 text-white" />
-                Contrate-me
+                {t('hero.availability').includes('Dispon') && 'Contrate-me'}
+                {t('hero.availability').includes('Available') && 'Hire me'}
               </motion.a>
               <motion.a
                 initial={{ opacity: 0, y: 20 }}
@@ -147,18 +151,18 @@ export default function Hero() {
               >
                 <div className="flex items-center">
                   <Eye className="w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
-                  <span>Veja meus projetos</span>
+                  <span>{t('hero.projects.view' as any)}</span>
                 </div>
               </motion.a>
             </div>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
               className="mt-8 text-sm text-gray-600 dark:text-gray-400"
             >
-              Atendimento personalizado, tecnologia de ponta e resultados reais para o seu negócio.
+              {t('hero.subtitle')}
             </motion.p>
           </motion.div>
         </div>

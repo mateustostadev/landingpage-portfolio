@@ -3,182 +3,257 @@ import { SectionBadge } from "@/components/ui/section-badge";
 import { Badge } from "@/components/ui/badge";
 import { BriefcaseIcon, ChevronDown } from "lucide-react";
 import { useState, MouseEvent } from "react";
-
-const experiences = [
-  {
-    company: "SEBRAE",
-    role: "Suporte e Infraestrutura de TI",
-    type: "Estagiário",
-    period: "05/2024 – Atual",
-    activities: [
-      "Desenvolvi consultas SQL para uso em relatórios gerenciais",
-      "Criei e implementei scripts de automação",
-      "Integrei ferramentas de IA em processos internos",
-      "Automatizei processos usando modelos de IA",
-      "Prestei suporte técnico (N1 e N2)",
-      "Gerenciei relatórios via TOTVS SmartView e RM Reports",
-      "Migrei relatórios Delphi para .NET",
-    ],
-  },
-  {
-    company: "LF Promotora",
-    role: "Analista de Dados",
-    type: "Integral",
-    period: "04/2024 – 06/2024",
-    activities: [
-      "Realizei higienização e tratamento de leads",
-      "Administrei bancos de dados",
-      "Desenvolvi fluxos automatizados para WhatsApp",
-      "Criei sistema disparador de mensagens",
-      "Implementei soluções ETL",
-    ],
-  },
-  {
-    company: "LF Promotora",
-    role: "Desenvolvedor FullStack",
-    type: "Estagiário",
-    period: "06/2023 – 04/2024",
-    activities: [
-      "Gerenciei chatbots e discadoras",
-      "Desenvolvi sistema web PHP com MySQL",
-      "Integrei sistema ao banco digital Master",
-      "Desenvolvi sistema de ponto eletrônico",
-      "Criei manager de disparo de mensagens WhatsApp",
-    ],
-  },
-  {
-    company: "R2T Telecomunicações",
-    role: "Assistente Administrativo de TI",
-    type: "Aprendiz",
-    period: "05/2019 – 10/2020",
-    activities: [
-      "Realizei manutenção de hardware",
-      "Prestei suporte administrativo",
-      "Organizei documentação",
-      "Utilizei Power BI para análise de dados",
-    ],
-  },
-];
-
-const ExperienceCard = ({ exp, index, isExpanded, onToggle }) => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: MouseEvent<HTMLDivElement>) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
-  const background = useMotionTemplate`radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(34, 197, 94, 0.15), transparent 80%)`;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ 
-        type: "spring", 
-        stiffness: 100, 
-        damping: 20,
-        duration: 0.4, 
-        ease: "easeOut" 
-      }}
-      viewport={{ once: true, margin: "-100px" }}
-      className={`relative w-full md:w-[calc(45%-2rem)] ${index % 2 === 0 ? "md:mr-8" : "md:ml-8"}`}
-      onClick={onToggle}
-      whileHover={{ y: -3 }}
-    >
-      <div
-        className="group relative rounded-xl border border-gray-200/50 dark:border-border bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] cursor-pointer overflow-hidden"
-        onMouseMove={handleMouseMove}
-      >
-        <motion.div
-          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-          style={{ background }}
-        />
-        <div className="relative">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <BriefcaseIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-              <h3 className="font-semibold text-base text-gray-900 dark:text-gray-100">
-                {exp.company}
-              </h3>
-              <Badge
-                variant="secondary"
-                className="text-xs bg-gray-100 dark:bg-card text-gray-700 dark:text-gray-300"
-              >
-                {exp.type}
-              </Badge>
-            </div>
-            <motion.div
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 300, 
-                damping: 20,
-                duration: 0.2 
-              }}
-            >
-              <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-            </motion.div>
-          </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">
-            {exp.role}
-          </p>
-          <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-xs mt-2">
-            <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-            <span>{exp.period}</span>
-          </div>
-
-          <motion.div
-            initial={false}
-            animate={{
-              height: isExpanded ? "auto" : 0,
-              opacity: isExpanded ? 1 : 0,
-            }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 300, 
-              damping: 30,
-              duration: 0.3 
-            }}
-            className="overflow-hidden"
-          >
-            <ul className="mt-4 space-y-1.5 text-xs text-gray-600 dark:text-gray-400">
-              {exp.activities.map((activity, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{
-                    opacity: isExpanded ? 1 : 0,
-                    x: isExpanded ? 0 : -10,
-                  }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 300, 
-                    damping: 20,
-                    duration: 0.2, 
-                    delay: i * 0.05 
-                  }}
-                  className="list-disc list-inside group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors"
-                >
-                  {activity}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const { language, t } = useLanguage();
+
+  const experiencesData = {
+    pt: [
+      {
+        company: "CAST",
+        role: "Atendente Help Desk",
+        type: "Integral",
+        period: "02/2026 – Atual",
+        activities: [],
+      },
+      {
+        company: "SEBRAE",
+        role: "Suporte e Infraestrutura de TI",
+        type: "Estagiário",
+        period: "05/2024 – 02/2026",
+        activities: [
+          "Desenvolvi consultas SQL para uso em relatórios gerenciais",
+          "Criei e implementei scripts de automação",
+          "Integrei ferramentas de IA em processos internos",
+          "Automatizei processos usando modelos de IA",
+          "Prestei suporte técnico (N1 e N2)",
+          "Gerenciei relatórios via TOTVS SmartView e RM Reports",
+          "Migrei relatórios Delphi para .NET",
+        ],
+      },
+      {
+        company: "LF Promotora",
+        role: "Analista de Dados",
+        type: "Integral",
+        period: "04/2024 – 06/2024",
+        activities: [
+          "Realizei higienização e tratamento de leads",
+          "Administrei bancos de dados",
+          "Desenvolvi fluxos automatizados para WhatsApp",
+          "Criei sistema disparador de mensagens",
+          "Implementei soluções ETL",
+        ],
+      },
+      {
+        company: "LF Promotora",
+        role: "Desenvolvedor FullStack",
+        type: "Estagiário",
+        period: "06/2023 – 04/2024",
+        activities: [
+          "Gerenciei chatbots e discadoras",
+          "Desenvolvi sistema web PHP com MySQL",
+          "Integrei sistema ao banco digital Master",
+          "Desenvolvi sistema de ponto eletrônico",
+          "Criei manager de disparo de mensagens WhatsApp",
+        ],
+      },
+      {
+        company: "R2T Telecomunicações",
+        role: "Assistente Administrativo de TI",
+        type: "Aprendiz",
+        period: "05/2019 – 10/2020",
+        activities: [
+          "Realizei manutenção de hardware",
+          "Prestei suporte administrativo",
+          "Organizei documentação",
+          "Utilizei Power BI para análise de dados",
+        ],
+      },
+    ],
+    en: [
+      {
+        company: "CAST",
+        role: "Help Desk Attendant",
+        type: "Full-time",
+        period: "02/2026 – Present",
+        activities: [],
+      },
+      {
+        company: "SEBRAE",
+        role: "IT Support and Infrastructure",
+        type: "Intern",
+        period: "05/2024 – 02/2026",
+        activities: [
+          "Developed SQL queries for use in management reports",
+          "Created and implemented automation scripts",
+          "Integrated AI tools into internal processes",
+          "Automated processes using AI models",
+          "Provided technical support (L1 and L2)",
+          "Managed reports via TOTVS SmartView and RM Reports",
+          "Migrated Delphi reports to .NET",
+        ],
+      },
+      {
+        company: "LF Promotora",
+        role: "Data Analyst",
+        type: "Full-time",
+        period: "04/2024 – 06/2024",
+        activities: [
+          "Performed sanitation and treatment of leads",
+          "Managed databases",
+          "Developed automated flows for WhatsApp",
+          "Created message triggering system",
+          "Implemented ETL solutions",
+        ],
+      },
+      {
+        company: "LF Promotora",
+        role: "FullStack Developer",
+        type: "Intern",
+        period: "06/2023 – 04/2024",
+        activities: [
+          "Managed chatbots and dialers",
+          "Developed PHP web system with MySQL",
+          "Integrated system with Master digital bank",
+          "Developed electronic time tracking system",
+          "Created WhatsApp message trigger manager",
+        ],
+      },
+      {
+        company: "R2T Telecomunicações",
+        role: "IT Administrative Assistant",
+        type: "Apprentice",
+        period: "05/2019 – 10/2020",
+        activities: [
+          "Performed hardware maintenance",
+          "Provided administrative support",
+          "Organized documentation",
+          "Used Power BI for data analysis",
+        ],
+      },
+    ]
+  };
+
+  const experiences = language === 'pt' ? experiencesData.pt : experiencesData.en;
+
+  const ExperienceCard = ({ exp, index, isExpanded, onToggle }: any) => {
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    function handleMouseMove({
+      currentTarget,
+      clientX,
+      clientY,
+    }: MouseEvent<HTMLDivElement>) {
+      const { left, top } = currentTarget.getBoundingClientRect();
+      mouseX.set(clientX - left);
+      mouseY.set(clientY - top);
+    }
+
+    const background = useMotionTemplate`radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(34, 197, 94, 0.15), transparent 80%)`;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          duration: 0.4,
+          ease: "easeOut"
+        }}
+        viewport={{ once: true, margin: "-100px" }}
+        className={`relative w-full md:w-[calc(45%-2rem)] ${index % 2 === 0 ? "md:mr-8" : "md:ml-8"}`}
+        onClick={onToggle}
+        whileHover={{ y: -3 }}
+      >
+        <div
+          className="group relative rounded-xl border border-gray-200/50 dark:border-border bg-background/50 backdrop-blur-sm p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] cursor-pointer overflow-hidden"
+          onMouseMove={handleMouseMove}
+        >
+          <motion.div
+            className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+            style={{ background }}
+          />
+          <div className="relative">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <BriefcaseIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                <h3 className="font-semibold text-base text-gray-900 dark:text-gray-100">
+                  {exp.company}
+                </h3>
+                <Badge
+                  variant="secondary"
+                  className="text-xs bg-gray-100 dark:bg-card text-gray-700 dark:text-gray-300"
+                >
+                  {exp.type}
+                </Badge>
+              </div>
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                  duration: 0.2
+                }}
+              >
+                <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              </motion.div>
+            </div>
+            <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+              {exp.role}
+            </p>
+            <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-xs mt-2">
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              <span>{exp.period}</span>
+            </div>
+
+            <motion.div
+              initial={false}
+              animate={{
+                height: isExpanded ? "auto" : 0,
+                opacity: isExpanded ? 1 : 0,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30,
+                duration: 0.3
+              }}
+              className="overflow-hidden"
+            >
+              <ul className="mt-4 space-y-1.5 text-xs text-gray-600 dark:text-gray-400">
+                {exp.activities.map((activity: string, i: number) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{
+                      opacity: isExpanded ? 1 : 0,
+                      x: isExpanded ? 0 : -10,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                      duration: 0.2,
+                      delay: i * 0.05
+                    }}
+                    className="list-disc list-inside group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors"
+                  >
+                    {activity}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <div
@@ -187,7 +262,7 @@ export default function Experience() {
     >
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="flex justify-center">
-          <SectionBadge icon={<BriefcaseIcon className="w-4 h-4" />} title="Experiência Profissional" />
+          <SectionBadge icon={<BriefcaseIcon className="w-4 h-4" />} title={t('exp.badge')} />
         </div>
         <div className="relative">
           <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-gray-300/30 via-gray-300/50 to-gray-300/30 dark:from-gray-600/30 dark:via-gray-600/50 dark:to-gray-600/30" />
@@ -200,7 +275,7 @@ export default function Experience() {
               >
                 <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
                   <div className="w-2.5 h-2.5 rounded-full bg-gray-400 dark:bg-gray-500 shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.1)] z-10" />
-                  <motion.div 
+                  <motion.div
                     className="absolute w-4 h-4 rounded-full bg-gray-300/20 dark:bg-gray-600/20"
                     animate={{
                       scale: [1, 1.2, 1],

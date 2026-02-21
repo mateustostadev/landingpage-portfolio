@@ -3,6 +3,7 @@ import { motion, useAnimationFrame } from "framer-motion";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { Handshake } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const partners = [
   {
@@ -33,8 +34,9 @@ const logos = [...partners, ...partners];
 export function Partners() {
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useRef(0);
+  const { t } = useLanguage();
 
-  useAnimationFrame((t, delta) => {
+  useAnimationFrame((time, delta) => {
     if (containerRef.current) {
       x.current -= (delta / 1000) * 60; // velocidade em px/s (reduzida para melhor experiência)
       const width = containerRef.current.scrollWidth / 2;
@@ -52,24 +54,24 @@ export function Partners() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex justify-center">
-          <SectionBadge icon={<Handshake className="w-4 h-4" />} title="Clientes Parceiros" />
+          <SectionBadge icon={<Handshake className="w-4 h-4" />} title={t('partners.badge')} />
         </div>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
           className="text-muted-foreground text-lg text-center max-w-2xl mx-auto mt-4"
         >
-          Empresas e instituições que confiam no meu trabalho
+          {t('partners.desc')}
         </motion.p>
-        
+
         {/* Container do carrossel com overflow hidden */}
         <div className="relative w-full overflow-hidden mt-16">
           {/* Efeito de fade nas extremidades do carrossel */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-background to-transparent/0 z-10 pointer-events-none"></div>
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-background to-transparent/0 z-10 pointer-events-none"></div>
-          
+
           <div
             ref={containerRef}
             className="flex gap-12 items-center w-max select-none py-4"
@@ -79,23 +81,22 @@ export function Partners() {
               <motion.div
                 key={partner.name + i}
                 className="flex flex-col items-center justify-center bg-transparent dark:bg-transparent rounded-xl p-6 shadow-none border-0 transition-all duration-300 w-48 h-36 mx-2"
-                whileHover={{ 
+                whileHover={{
                   y: -8,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                 }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 300, 
-                  damping: 20 
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20
                 }}
               >
                 <div className="relative w-full h-full flex items-center justify-center">
                   <OptimizedImage
                     src={partner.logo}
                     alt={partner.name}
-                    className={`h-24 object-contain max-w-[85%] z-10 relative brightness-0 dark:invert dark:brightness-0 ${
-                      partner.name.includes('ALCN') ? 'h-52' : ''
-                    }`}
+                    className={`h-24 object-contain max-w-[85%] z-10 relative brightness-0 dark:invert dark:brightness-0 ${partner.name.includes('ALCN') ? 'h-52' : ''
+                      }`}
                     loading="lazy"
                     width={partner.name.includes('ALCN') ? 280 : 160}
                     height={partner.name.includes('ALCN') ? 200 : 96}

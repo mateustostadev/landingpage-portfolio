@@ -1,37 +1,39 @@
 import { motion } from "framer-motion";
 import { TrendingUp, Users, FolderOpen } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const indicators = [
   {
     icon: Users,
     value: "+10",
-    label: "CLIENTES ATENDIDOS",
+    label: "indicators.clients",
     color: "text-green-600 dark:text-green-400",
   },
   {
     icon: FolderOpen,
     value: "+15",
-    label: "PROJETOS ENTREGUES",
+    label: "indicators.projects",
     color: "text-emerald-600 dark:text-emerald-400",
   },
   {
     icon: TrendingUp,
     value: "3",
-    label: "ANOS DE EXPERIÊNCIA",
+    label: "indicators.experience",
     color: "text-teal-600 dark:text-teal-400",
   },
 ];
 
 export function SuccessIndicators() {
+  const { t } = useLanguage();
   return (
     <div className="pt-8 bg-white dark:bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-            Transformando ideias em soluções digitais inovadoras para empresas que querem crescer.
+            {t('indicators.title')}
           </h2>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {indicators.map((indicator, index) => (
             <motion.div
@@ -50,7 +52,7 @@ export function SuccessIndicators() {
                   {indicator.value}
                 </span>
                 <span className="text-gray-600 dark:text-gray-400 text-xs font-medium tracking-wider">
-                  {indicator.label}
+                  {t(indicator.label as any)}
                 </span>
               </div>
             </motion.div>
